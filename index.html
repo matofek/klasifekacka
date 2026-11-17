@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>klasifekačka — Svetelný stôl &amp; Tlačové archy | Grafický dizajn (500 ŠPK)</title>
+    <title>klasifekačka — Svetelný stôl &amp; Tlačové archy | Grafický dizajn</title>
 
     <!-- Google Fonts: Kompletné rezy Funnel Display (300..800) & Funnel Sans (300..800) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,6 +80,13 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* GDPR Lock: Pred prihlásením sú všetky pracovné archy a lišty 100% skryté */
+        body.is-locked #top-app-header,
+        body.is-locked #info-corner-btn,
+        body.is-locked #cutting-mat-desk > .paper-sheet {
+            display: none !important;
+        }
+
         .tabular-nums {
             font-variant-numeric: tabular-nums;
         }
@@ -129,6 +136,7 @@
         }
 
         .paper-sheet input[type="text"],
+        .paper-sheet input[type="email"],
         .paper-sheet textarea {
             cursor: text;
         }
@@ -155,6 +163,15 @@
             justify-content: space-between;
             overflow-y: auto;
             z-index: 15;
+        }
+
+        .sheet-format-00 {
+            position: relative;
+            width: 560px;
+            height: 456px;
+            background-color: var(--paper-white);
+            box-shadow: 0 32px 80px rgba(66, 12, 9, 0.24), 0 10px 28px rgba(66, 12, 9, 0.14);
+            cursor: default;
         }
 
         .sheet-format-01 {
@@ -278,75 +295,94 @@
                 width: 100% !important;
                 margin: 0 auto 28px auto;
             }
+            .sheet-format-00 {
+                width: 100% !important;
+                max-width: 560px;
+            }
         }
     </style>
 </head>
-<body>
+<body class="is-locked">
 
     <!-- =========================================================================
-         PRIHLASOVACIA BRÁNA (PRIAME PRIHLÁSENIE GMAILOM + GOOGLE OAUTH)
+         ARCH 00 — #0 prihlásenie (TLAČOVÝ ARCH S OREZOVKAMI NA ČISTEJ PODLOŽKE)
          ========================================================================= -->
-    <div id="auth-gate-modal" class="fixed inset-0 z-[10050] bg-[#aab8d6]/92 backdrop-blur-xs flex items-center justify-center p-4">
-        <div class="bg-[#C6D8FF] text-[#420C09] border-4 border-white shadow-2xl max-w-lg w-full overflow-hidden">
-            <div class="bg-[#E84520] text-white px-6 py-4 flex items-center justify-between">
-                <div>
-                    <div class="text-[9.5px] font-bold uppercase tracking-widest text-white/85">ŠUP KOŠICE · GRAFICKÝ DIZAJN 3. ROČNÍK</div>
-                    <h2 class="font-display font-extrabold text-3xl tracking-tight lowercase leading-none mt-0.5 text-white">klasi<span class="text-[#420C09]">fekačka</span></h2>
-                </div>
-                <span class="bg-[#420C09] text-[#C6D8FF] px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider">500 ŠPK</span>
+    <div id="auth-gate-modal" class="fixed inset-0 z-[10050] pointer-events-auto flex items-center justify-center p-4">
+        <article class="sheet-format-00">
+            <div class="prepress-marks-mount" data-clean="true" data-header="" data-doc="Grafický dizajn, 3. ročník" data-label="" data-dim=""></div>
+
+            <!-- Spadávka (#C6D8FF) + horný červeno-oranžový pás (#E84520) -->
+            <div class="bleed-box bg-[#C6D8FF]">
+                <div class="w-full h-[106px] bg-[#E84520]"></div>
             </div>
 
-            <div class="p-6 space-y-4 text-xs">
-                <p class="text-[#420C09] leading-relaxed font-medium">
-                    Prihlás sa svojím školským <strong>Google e-mailom</strong>. Systém automaticky odomkne tvoj osobný profil, poznámky a odznaky. Pedagógovi (<code>matofek@gmail.com</code>) sa zobrazí aj správcovský hárok <strong>#4 admin</strong>.
-                </p>
-
-                <form onsubmit="handleDirectEmailLogin(event)" class="space-y-2.5">
-                    <label class="block text-[10px] font-extrabold uppercase tracking-wider text-[#420C09]">
-                        Zadaj svoj Gmail (zo zoznamu 3. ročníka GD):
-                    </label>
-                    <div class="flex gap-2">
-                        <input
-                            id="direct-email-input"
-                            type="email"
-                            required
-                            placeholder="napr. nikamarcinova19@gmail.com alebo matofek@gmail.com"
-                            class="flex-1 bg-white text-[#420C09] placeholder-[#420C09]/40 px-3 py-2.5 text-xs font-medium border-2 border-[#420C09] focus:border-[#E84520] focus:outline-none"
-                        />
-                        <button
-                            type="submit"
-                            class="bg-[#E84520] hover:bg-[#420C09] text-white font-display font-extrabold text-xs uppercase tracking-wider px-5 py-2.5 transition-colors cursor-pointer shrink-0"
-                        >
-                            Vstúpiť →
-                        </button>
+            <div class="trim-box text-[#420C09]" style="padding: 18px 28px 22px 28px; overflow: hidden;">
+                <!-- Hlavička archu #0 prihlásenie -->
+                <div class="shrink-0 h-[68px] flex flex-col justify-center">
+                    <div class="text-[9.5px] font-bold uppercase tracking-widest text-white/85">
+                        ŠUP KOŠICE · GRAFICKÝ DIZAJN 3. ROČNÍK
                     </div>
-                </form>
-
-                <div class="flex items-center gap-3 py-0.5">
-                    <div class="flex-1 h-px bg-[#420C09]/20"></div>
-                    <span class="text-[9.5px] uppercase tracking-widest text-[#420C09]/55 font-bold">alebo cez vyskakovacie okno</span>
-                    <div class="flex-1 h-px bg-[#420C09]/20"></div>
+                    <div class="flex items-baseline gap-x-3 mt-0.5">
+                        <span class="font-display font-medium text-[38px] tracking-tight leading-none text-[#420C09] select-none">#0</span>
+                        <h2 class="font-display font-medium text-[38px] tracking-tight leading-none m-0 lowercase text-white">
+                            prihlásenie
+                        </h2>
+                    </div>
                 </div>
 
-                <button
-                    id="google-signin-btn"
-                    type="button"
-                    onclick="signInWithGoogleAccount()"
-                    class="w-full bg-[#420C09] hover:bg-[#E84520] text-white font-display font-extrabold text-xs uppercase tracking-wider py-2.5 px-4 flex items-center justify-center gap-2.5 transition-colors cursor-pointer"
-                >
-                    <svg viewBox="0 0 24 24" width="16" height="16" class="shrink-0">
-                        <path fill="#FFFFFF" d="M21.35 11.1h-9.18v2.92h5.27c-.23 1.48-1.74 4.34-5.27 4.34-3.17 0-5.76-2.63-5.76-5.86s2.59-5.86 5.76-5.86c1.81 0 3.02.77 3.71 1.43l2.53-2.44C16.79 4.12 14.69 3.2 12.17 3.2 7.03 3.2 2.87 7.36 2.87 12.5s4.16 9.3 9.3 9.3c5.37 0 8.93-3.77 8.93-9.09 0-.61-.07-1.08-.15-1.61z"/>
-                    </svg>
-                    <span>Overiť cez Google OAuth okno</span>
-                </button>
+                <!-- Formulárová časť na svetlomodrom papieri (#C6D8FF) -->
+                <div class="flex-1 flex flex-col justify-between pt-4 text-xs">
+                    <p class="text-[#420C09] leading-relaxed font-normal text-[11.5px] m-0">
+                        Prihlás sa svojím školským <strong>Google e-mailom</strong>. Po overení sa na rezacej podložke odomknú tvoje osobné pracovné archy.
+                    </p>
 
-                <div id="auth-error-msg" class="hidden bg-[#E84520]/15 border-l-4 border-[#E84520] p-2.5 text-[11px] text-[#420C09] font-medium"></div>
+                    <form onsubmit="handleDirectEmailLogin(event)" class="space-y-2 no-drag">
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-[#420C09]">
+                            Školský Gmail (3. ročník GD):
+                        </label>
+                        <div class="flex gap-2">
+                            <input
+                                id="direct-email-input"
+                                type="email"
+                                required
+                                placeholder="napr. meno@gmail.com"
+                                class="flex-1 bg-white text-[#420C09] placeholder-[#420C09]/40 px-3 py-2.5 text-xs font-medium border-2 border-[#420C09] focus:border-[#E84520] focus:outline-none"
+                            />
+                            <button
+                                type="submit"
+                                class="bg-[#E84520] hover:bg-[#420C09] text-white font-display font-extrabold text-xs uppercase tracking-wider px-5 py-2.5 transition-colors cursor-pointer shrink-0"
+                            >
+                                Vstúpiť →
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="flex items-center gap-3">
+                        <div class="flex-1 h-px bg-[#420C09]/20"></div>
+                        <span class="text-[9px] uppercase tracking-widest text-[#420C09]/55 font-bold">alebo cez účet google</span>
+                        <div class="flex-1 h-px bg-[#420C09]/20"></div>
+                    </div>
+
+                    <button
+                        id="google-signin-btn"
+                        type="button"
+                        onclick="signInWithGoogleAccount()"
+                        class="no-drag w-full bg-[#420C09] hover:bg-[#E84520] text-white font-display font-extrabold text-xs uppercase tracking-wider py-2.5 px-4 flex items-center justify-center gap-2.5 transition-colors cursor-pointer"
+                    >
+                        <svg viewBox="0 0 24 24" width="15" height="15" class="shrink-0">
+                            <path fill="#FFFFFF" d="M21.35 11.1h-9.18v2.92h5.27c-.23 1.48-1.74 4.34-5.27 4.34-3.17 0-5.76-2.63-5.76-5.86s2.59-5.86 5.76-5.86c1.81 0 3.02.77 3.71 1.43l2.53-2.44C16.79 4.12 14.69 3.2 12.17 3.2 7.03 3.2 2.87 7.36 2.87 12.5s4.16 9.3 9.3 9.3c5.37 0 8.93-3.77 8.93-9.09 0-.61-.07-1.08-.15-1.61z"/>
+                        </svg>
+                        <span>Overiť cez Google OAuth okno</span>
+                    </button>
+
+                    <div id="auth-error-msg" class="hidden bg-[#E84520]/15 border-l-4 border-[#E84520] p-2 text-[10.5px] text-[#420C09] font-medium"></div>
+                </div>
             </div>
-        </div>
+        </article>
     </div>
 
     <!-- MINIMALISTICKÁ NÁSTROJOVÁ LIŠTA V 4-FAREBNEJ SCHÉME -->
-    <header class="fixed top-3 right-14 z-[9999] bg-[#420C09] text-[#C6D8FF] border-b-2 border-[#E84520] px-3.5 py-1.5 shadow-2xl flex flex-wrap items-center gap-3 text-xs">
+    <header id="top-app-header" class="fixed top-3 right-14 z-[9999] bg-[#420C09] text-[#C6D8FF] border-b-2 border-[#E84520] px-3.5 py-1.5 shadow-2xl flex flex-wrap items-center gap-3 text-xs">
         <div class="flex items-center gap-1.5 font-display font-extrabold tracking-tight text-sm lowercase">
             <span class="text-[#F38321]">klasi</span><span class="text-white">fekačka</span>
             <span id="cloud-sync-badge" class="text-[9px] font-bold uppercase text-[#C6D8FF]/65 ml-1 hidden md:inline">● LOKÁLNY REŽIM</span>
@@ -459,7 +495,7 @@
                 </div>
 
                 <div>
-                    <div class="text-[9.5px] font-extrabold uppercase tracking-widest text-[#E84520] mb-2">04 // FILMOVÉ ODZNAKY</div>
+                    <div class="text-[9.5px] font-extrabold uppercase tracking-widest text-[#E84520] mb-2">04 // FILMOVÉ ODZNAKOVÉ KATEGÓRIE</div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-[11px] divide-y divide-[#420C09]/20">
                         <div class="py-1.5 flex justify-between gap-2">
                             <div><strong>Saul Bass Duch:</strong> Ikonická geometrická skratka a strihaný papier.</div>
@@ -532,7 +568,7 @@
                             <div>
                                 <div class="flex items-baseline gap-3 leading-[32px] mb-1">
                                     <span class="text-[18px] tracking-[0.02em] text-[#F38321] uppercase font-normal">
-                                        HARMONOGRAM 5 STRIED
+                                        HARMONOGRAM
                                     </span>
                                     <span class="text-[8px] font-normal uppercase tracking-wider text-[#F38321]">
                                         (+2 ŠPK ZA KAŽDÚ PLNÚ ÚČASŤ · ST 2.–6. HOD)
@@ -987,6 +1023,7 @@
         }
 
         function unlockWorkspaceForRole(role, studentId) {
+            document.body.classList.remove('is-locked');
             const gate = document.getElementById('auth-gate-modal');
             if (gate) gate.classList.add('hidden');
 
@@ -1019,6 +1056,11 @@
             }
 
             renderAll();
+            setTimeout(() => {
+                const content = document.getElementById('sheet01-scroll-content');
+                if (content) content.dispatchEvent(new Event('scroll'));
+            }, 50);
+
             const me = students.find(s => s.id === activeStudentId);
             showToast(
                 isAdmin
@@ -1034,6 +1076,7 @@
             try { localStorage.removeItem('klasifekacka_logged_email'); } catch (_) {}
             currentUserRole = null;
             currentUserEmail = null;
+            document.body.classList.add('is-locked');
             const gate = document.getElementById('auth-gate-modal');
             if (gate) gate.classList.remove('hidden');
         }
@@ -1219,7 +1262,7 @@
         }
 
         // =========================================================================
-        // 3. ORIGINÁLNA REZACIA PODLOŽKA S VEKTOROVÝM LOGOM MF | klasifekačka
+        // 3. REZACIA PODLOŽKA S LOGOM MF | klasifekačka (ČISTÉ S CEZ FUNNEL DISPLAY)
         // =========================================================================
         function renderCuttingMat() {
             const svg = document.getElementById('cutting-mat-svg');
@@ -1308,9 +1351,7 @@
                     </g>
                     <path fill="${matBg}" d="M91.941 0h367.772v91.943H91.941z"/>
                     <rect x="91.941" y="${thickStroke / 2}" width="${367.772 - thickStroke / 2}" height="${91.943 - thickStroke}" fill="none" stroke="${solidLineHex}" stroke-width="${thickStroke}"/>
-                    <g fill="${solidLineHex}">
-                        <path d="M117.458 64.552V27.304h8.159v19.378h.178l9.667-8.736h9.667l-10.997 9.934 11.795 16.673h-9.489l-8.07-11.707-2.75 2.218v9.489zM148.189 64.552V27.304h8.159v37.248zM170.714 65.039q-4.789 0-7.472-2.283t-2.683-6.098q0-3.945 2.815-6.097 2.816-2.15 8.049-2.15h7.14v-.976q0-3.636-4.612-3.637-4.08 0-4.967 2.75h-8.07q.93-4.524 4.213-6.829 3.282-2.306 8.78-2.306 6.075 0 9.268 2.683 3.192 2.683 3.192 7.826v8.647h3.813v7.981h-8.159v-4.435h-1.862q-1.374 2.395-3.636 3.658-2.261 1.264-5.81 1.264Zm1.242-6.119q1.95 0 3.437-.665 1.485-.665 2.328-1.818a4.26 4.26 0 0 0 .843-2.571v-.133h-6.785q-3.414 0-3.414 2.527 0 1.286.953 1.973t2.639.688ZM205.878 65.084q-5.987 0-9.423-2.527t-3.703-7.051h7.85q.354 1.775 1.707 2.616 1.351.843 3.924.843 3.991 0 3.991-2.085 0-.842-.599-1.352c-.599-.51-1.058-.599-1.974-.776l-5.941-1.153q-8.159-1.595-8.159-7.627 0-3.902 3.148-6.23t8.691-2.327c5.543.001 6.606.798 8.735 2.395q3.193 2.394 3.459 3.74h-7.849q-.443-1.73-1.574-2.506-1.13-.776-3.304-.776-1.774 0-2.728.488c-.954.488-.953.813-.953 1.463q0 .711.576 1.197.577.489 1.729.71l6.119 1.197q4.257.843 6.253 2.749 1.995 1.907 1.995 5.144 0 4.169-3.082 6.519t-8.891 2.351ZM225.877 35.685q-1.818 0-3.104-1.286t-1.286-3.104c0-1.818.428-2.246 1.286-3.104q1.285-1.286 3.104-1.286c1.819 0 2.246.429 3.104 1.286q1.285 1.286 1.286 3.104c.001 1.818-.43 2.247-1.286 3.104q-1.287 1.286-3.104 1.286m-4.079 28.867V37.946h8.159v26.606zM238.071 64.552V44.331h-4.523v-6.386h4.612v-4.257q0-3.281 1.707-4.833 1.707-1.551 4.855-1.552h7.716v6.385h-6.297v4.257h5.765v6.386h-5.676v20.221zM268.313 65.084q-4.39 0-7.627-1.707c-3.237-1.707-3.82-2.75-4.988-4.834s-1.752-4.545-1.752-7.383.569-5.284 1.708-7.339q1.707-3.082 4.877-4.745 3.17-1.662 7.473-1.662 4.257 0 7.316 1.618c3.059 1.618 3.599 2.624 4.678 4.634q1.619 3.016 1.619 7.228v2.617h-19.821q.486 2.572 2.128 3.88c1.642 1.308 2.542 1.308 4.346 1.308q2.172 0 3.393-.688 1.218-.687 1.751-2.194h8.159q-.843 4.346-4.346 6.807c-3.503 2.461-5.307 2.461-8.913 2.461Zm-6.385-16.894h11.884q-.4-2.218-1.84-3.304-1.442-1.087-3.925-1.087-2.439 0-3.991 1.108-1.552 1.11-2.128 3.282ZM285.519 64.552V27.304h8.159v19.378h.178l9.667-8.736h9.667l-10.997 9.934 11.795 16.673h-9.489l-8.07-11.707-2.75 2.218v9.489zM325.028 65.039q-4.789 0-7.472-2.283t-2.683-6.098q0-3.945 2.815-6.097 2.816-2.15 8.049-2.15h7.14v-.976q0-3.636-4.612-3.637-4.08 0-4.967 2.75h-8.07q.93-4.524 4.213-6.829 3.281-2.306 8.78-2.306 6.075 0 9.268 2.683 3.192 2.683 3.192 7.826v8.647h3.813v7.981h-8.159v-4.435h-1.862q-1.374 2.395-3.636 3.658-2.262 1.264-5.81 1.264Zm1.243-6.119q1.95 0 3.437-.665 1.485-.665 2.328-1.818a4.26 4.26 0 0 0 .843-2.571v-.133h-6.785q-3.414 0-3.414 2.527 0 1.286.953 1.973.954.688 2.639.688ZM360.725 65.084q-4.169 0-7.339-1.707t-4.967-4.812c-1.796-3.105-1.796-4.508-1.796-7.316s.592-5.247 1.774-7.317q1.774-3.103 4.966-4.811t7.361-1.707q5.409 0 8.891 2.749 3.48 2.75 4.279 7.449h-8.159q-.531-1.463-1.796-2.283c-1.265-.82-1.914-.82-3.215-.82q-2.617 0-4.279 1.751-1.663 1.753-1.663 4.989c0 3.236.562 3.821 1.686 4.988q1.684 1.752 4.257 1.752 4.213 0 5.144-3.504h8.159q-.71 4.923-4.168 7.761c-3.458 2.838-5.351 2.838-9.135 2.838m-3.636-30.42-6.164-8.026v-.177h6.386l3.636 3.37 3.548-3.37h6.297v.177l-6.075 8.026h-7.627ZM376.864 64.552V27.304h8.159v19.378h.178l9.667-8.736h9.667l-10.997 9.934 11.795 16.673h-9.489l-8.07-11.707-2.75 2.218v9.489zM416.374 65.039q-4.789 0-7.472-2.283t-2.683-6.098q0-3.945 2.815-6.097 2.816-2.15 8.049-2.15h7.14v-.976q0-3.636-4.612-3.637-4.08 0-4.967 2.75h-8.07q.93-4.524 4.213-6.829 3.281-2.306 8.78-2.306 6.075 0 9.268 2.683 3.192 2.683 3.192 7.826v8.647h3.813v7.981h-8.159v-4.435h-1.862q-1.374 2.395-3.636 3.658-2.262 1.264-5.81 1.264Zm1.242-6.119q1.95 0 3.437-.665 1.485-.665 2.328-1.818a4.26 4.26 0 0 0 .843-2.571v-.133h-6.785q-3.414 0-3.414 2.527 0 1.286.953 1.973t2.639.688Z"/>
-                    </g>
+                    <text x="275.8" y="64.5" text-anchor="middle" fill="${solidLineHex}" font-family="'Funnel Display', sans-serif" font-size="52.5" font-weight="800" letter-spacing="-0.8">klasifekačka</text>
                 </svg>
             `;
 

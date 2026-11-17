@@ -26,7 +26,7 @@
         };
     </script>
 
-    <!-- Firebase SDK (Compat pre jednoduché vloženie do Google Sites Embed kódu) -->
+    <!-- Firebase SDK (Compat) -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -290,7 +290,7 @@
         <div class="bg-[#C6D8FF] text-[#420C09] border-4 border-white shadow-2xl max-w-lg w-full overflow-hidden">
             <div class="bg-[#E84520] text-white px-6 py-4 flex items-center justify-between">
                 <div>
-                    <div class="text-[9.5px] font-bold uppercase tracking-widest text-white/85">GOOGLE SITES · GRAFICKÝ DIZAJN 3. ROČNÍK</div>
+                    <div class="text-[9.5px] font-bold uppercase tracking-widest text-white/85">ŠUP KOŠICE · GRAFICKÝ DIZAJN 3. ROČNÍK</div>
                     <h2 class="font-display font-extrabold text-3xl tracking-tight lowercase leading-none mt-0.5 text-white">klasi<span class="text-[#420C09]">fekačka</span></h2>
                 </div>
                 <span class="bg-[#420C09] text-[#C6D8FF] px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider">500 ŠPK</span>
@@ -301,7 +301,6 @@
                     Prihlás sa svojím školským <strong>Google e-mailom</strong>. Systém automaticky odomkne tvoj osobný profil, poznámky a odznaky. Pedagógovi (<code>matofek@gmail.com</code>) sa zobrazí aj správcovský hárok <strong>#4 admin</strong>.
                 </p>
 
-                <!-- 1. Priame prihlásenie e-mailom (100% spoľahlivé aj vo vnútri Google Sites iframe) -->
                 <form onsubmit="handleDirectEmailLogin(event)" class="space-y-2.5">
                     <label class="block text-[10px] font-extrabold uppercase tracking-wider text-[#420C09]">
                         Zadaj svoj Gmail (zo zoznamu 3. ročníka GD):
@@ -329,7 +328,6 @@
                     <div class="flex-1 h-px bg-[#420C09]/20"></div>
                 </div>
 
-                <!-- 2. Google OAuth Popup -->
                 <button
                     id="google-signin-btn"
                     type="button"
@@ -347,7 +345,7 @@
         </div>
     </div>
 
-    <!-- MINIMALISTICKÁ NÁSTROJOVÁ LIŠTA V NOVEJ 4-FAREBNEJ SCHÉME -->
+    <!-- MINIMALISTICKÁ NÁSTROJOVÁ LIŠTA V 4-FAREBNEJ SCHÉME -->
     <header class="fixed top-3 right-14 z-[9999] bg-[#420C09] text-[#C6D8FF] border-b-2 border-[#E84520] px-3.5 py-1.5 shadow-2xl flex flex-wrap items-center gap-3 text-xs">
         <div class="flex items-center gap-1.5 font-display font-extrabold tracking-tight text-sm lowercase">
             <span class="text-[#F38321]">klasi</span><span class="text-white">fekačka</span>
@@ -356,18 +354,15 @@
 
         <span class="text-white/20">|</span>
 
-        <!-- Aktívna identita (Žiačka vidí len svoje meno, Admin si môže prepínať celú triedu) -->
         <div class="flex items-center gap-1.5">
             <span class="text-[9.5px] uppercase tracking-widest text-[#C6D8FF]/65 hidden sm:inline">Identita:</span>
             <select id="active-student-select" onchange="changeActiveStudent(this.value)" class="bg-transparent text-white font-bold text-xs cursor-pointer focus:outline-none border-b border-[#F38321] pb-0.5">
-                <!-- Naplnené cez JS -->
             </select>
             <span id="locked-student-label" class="hidden text-white font-bold text-xs border-b border-[#F38321] pb-0.5"></span>
         </div>
 
         <span class="text-white/20">|</span>
 
-        <!-- Prepínač rozsahu: Aktuálny projekt (500 ŠPK) vs. Celý polrok (1000 ŠPK) -->
         <div class="flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-wider tabular-nums">
             <button id="top-scope-project" onclick="setScoreScope('project')" class="px-2 py-0.5 bg-[#E84520] text-white transition-colors cursor-pointer">
                 Projekt (500)
@@ -379,7 +374,6 @@
 
         <span class="text-white/20">|</span>
 
-        <!-- Rýchly skok na Tlačové archy #1 – #4 (#4 sa zobrazí iba pre matofek@gmail.com) -->
         <div class="flex items-center gap-1.5 font-display font-extrabold text-xs lowercase">
             <button onclick="bringToFront('sheet-01')" title="#1 zadanie" class="px-2 h-6 bg-[#E84520] text-white hover:bg-[#F38321] cursor-pointer">#1 zadanie</button>
             <button onclick="bringToFront('sheet-02')" title="#2 poradie" class="px-2 h-6 bg-[#C6D8FF] text-[#420C09] hover:bg-white cursor-pointer">#2 poradie</button>
@@ -490,6 +484,7 @@
     </div>
 
     <main id="cutting-mat-desk">
+        <!-- DYNAMICKÁ FIXNÁ POTLAČ REZACEJ PODLOŽKY (#aab8d6 S LINKAMI A LOGOM #c3d3f5) -->
         <svg id="cutting-mat-svg" class="cutting-mat-guides"></svg>
 
         <!-- =====================================================================
@@ -626,7 +621,6 @@
                         ></textarea>
                     </div>
 
-                    <!-- Odpočet hodín s automatickým režimom podľa zvonenia (2.–6. hodina) -->
                     <div class="w-full flex items-center justify-between no-drag select-none tabular-nums pl-1">
                         <div class="text-left font-sans font-normal text-[12px] leading-[1.12] text-[#F38321] lowercase">
                             <div>do</div>
@@ -689,7 +683,7 @@
         </article>
 
         <!-- =====================================================================
-             ARCH 02 — #2 poradie (ZVÄČŠENÝ O 1/4: 696 × 852 PX, BEZ BIELEHO FÚZA)
+             ARCH 02 — #2 poradie (696 × 852 PX, BEZ BIELEHO FÚZA)
              ===================================================================== -->
         <article id="sheet-02" class="paper-sheet sheet-format-02" style="left: 245px; top: 32px; z-index: 20;">
             <div class="slug-header" style="left: 44px; right: 44px;">
@@ -701,7 +695,7 @@
         </article>
 
         <!-- =====================================================================
-             ARCH 03 — #3 progres (ROVNAKÁ VÝŠKA AKO ARCH 01: 682 PX)
+             ARCH 03 — #3 progres (VÝŠKA 682 PX)
              ===================================================================== -->
         <article id="sheet-03" class="paper-sheet sheet-format-03" style="left: 980px; top: 32px; z-index: 45;">
             <div class="prepress-marks-mount" data-clean="true" data-header="" data-doc="Grafický dizajn, 3. ročník" data-label="" data-dim=""></div>
@@ -953,7 +947,7 @@
             provider.setCustomParameters({ prompt: 'select_account' });
             auth.signInWithPopup(provider).catch(err => {
                 if (errBox) {
-                    errBox.textContent = 'Google Sites iframe zablokoval vyskakovacie okno (' + err.code + '). Zadaj svoj Gmail priamo do políčka vyššie a klikni na „Vstúpiť →“.';
+                    errBox.textContent = 'Prehliadač zablokoval vyskakovacie okno (' + err.code + '). Zadaj svoj Gmail priamo do políčka vyššie a klikni na „Vstúpiť →“.';
                     errBox.classList.remove('hidden');
                 }
             });
@@ -1134,27 +1128,22 @@
         }
 
         // =========================================================================
-        // 2. OREZOVÉ ZNAČKY A GEOMETRIA VIZITKOVÉHO HÁRKU (ARCH 02)
+        // 2. OREZOVÉ ZNAČKY S BIELYM KNOCKOUTOM & VIZITKOVÝ HÁROK (ARCH 02)
         // =========================================================================
         function createPrepressCornerSvg(isClean = false) {
-            if (isClean) {
-                return `
-                    <svg viewBox="0 0 64 64" class="w-full h-full">
-                        <line x1="44" y1="0" x2="44" y2="32" stroke="#000000" stroke-width="0.85" />
-                        <line x1="0" y1="44" x2="32" y2="44" stroke="#000000" stroke-width="0.85" />
-                    </svg>
-                `;
-            }
             return `
-                <svg viewBox="0 0 64 64" class="w-full h-full">
-                    <line x1="44" y1="0" x2="44" y2="32" stroke="#000000" stroke-width="0.85" />
-                    <line x1="0" y1="44" x2="32" y2="44" stroke="#000000" stroke-width="0.85" />
-                    <line x1="44" y1="32" x2="44" y2="39" stroke="#FFFFFF" stroke-width="1.35" />
-                    <line x1="32" y1="44" x2="39" y2="44" stroke="#FFFFFF" stroke-width="1.35" />
-                    <circle cx="20" cy="20" r="6.5" fill="none" stroke="#000000" stroke-width="0.75" />
-                    <circle cx="20" cy="20" r="2" fill="#000000" />
-                    <line x1="10" y1="20" x2="30" y2="20" stroke="#000000" stroke-width="0.75" />
-                    <line x1="20" y1="10" x2="20" y2="30" stroke="#000000" stroke-width="0.75" />
+                <svg viewBox="0 0 64 64" width="64" height="64" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="44" y1="32" x2="44" y2="38" stroke="#FFFFFF" stroke-width="2.6" />
+                    <line x1="32" y1="44" x2="38" y2="44" stroke="#FFFFFF" stroke-width="2.6" />
+                    <line x1="44" y1="0" x2="44" y2="38" stroke="#000000" stroke-width="0.85" />
+                    <line x1="0" y1="44" x2="38" y2="44" stroke="#000000" stroke-width="0.85" />
+                    ${isClean ? '' : `
+                    <g transform="translate(20, 20)">
+                        <circle cx="0" cy="0" r="6" fill="none" stroke="#000000" stroke-width="0.75" />
+                        <circle cx="0" cy="0" r="2.2" fill="#000000" />
+                        <line x1="-10" y1="0" x2="10" y2="0" stroke="#000000" stroke-width="0.75" />
+                        <line x1="0" y1="-10" x2="0" y2="10" stroke="#000000" stroke-width="0.75" />
+                    </g>`}
                 </svg>
             `;
         }
@@ -1230,98 +1219,240 @@
         }
 
         // =========================================================================
-        // 3. REZACIA PODLOŽKA S LOGOM MF / klasifekačka
+        // 3. ORIGINÁLNA REZACIA PODLOŽKA S VEKTOROVÝM LOGOM MF | klasifekačka
         // =========================================================================
         function renderCuttingMat() {
             const svg = document.getElementById('cutting-mat-svg');
             if (!svg) return;
-            const W = window.innerWidth;
-            const H = window.innerHeight;
-            svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
 
-            const margin = 28;
-            const step = 42;
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            svg.setAttribute('viewBox', `0 0 ${vw} ${vh}`);
+
+            const CM = 38;
+            const originX = 48;
+            const originY = vh - 36;
+
+            const maxCols = Math.max(10, Math.floor((vw - originX - 28) / CM));
+            const maxRows = Math.max(8, Math.floor((originY - 26) / CM));
+
+            const gridRight = originX + maxCols * CM;
+            const gridTop = originY - maxRows * CM;
+            const gridW = maxCols * CM;
+            const gridH = maxRows * CM;
+
+            const matBg = '#aab8d6';
             const strokeColor = '#c3d3f5';
-
-            const cols = Math.max(6, Math.floor((W - 2 * margin) / step));
-            const rows = Math.max(4, Math.floor((H - 2 * margin) / step));
-            const gridW = cols * step;
-            const gridH = rows * step;
-            const x0 = Math.round((W - gridW) / 2);
-            const y0 = Math.round((H - gridH) / 2);
-            const x1 = x0 + gridW;
-            const y1 = y0 + gridH;
+            const majorStrokeColor = '#c3d3f5';
+            const solidLineHex = '#c3d3f5';
+            const thinStroke = 1.25;
+            const thickStroke = 3.2;
 
             const infoBtn = document.getElementById('info-corner-btn');
             if (infoBtn) {
-                infoBtn.style.left = `${x1 - 17}px`;
-                infoBtn.style.top = `${y0 - 17}px`;
+                const btnRadius = 17;
+                infoBtn.style.left = `${gridRight - btnRadius}px`;
+                infoBtn.style.top = `${gridTop - btnRadius}px`;
             }
 
-            let out = '';
-            for (let c = 0; c <= cols; c++) {
-                const x = x0 + c * step;
-                const sw = (c % 5 === 0) ? 1.3 : 0.65;
-                out += `<line x1="${x}" y1="${y0}" x2="${x}" y2="${y1}" stroke="${strokeColor}" stroke-width="${sw}" />`;
-                if (c > 0 && c < cols) {
-                    out += `<text x="${x - 3}" y="${y1 - 4}" text-anchor="end" fill="${strokeColor}" font-family="'Funnel Sans', sans-serif" font-size="8" font-weight="600">${c}</text>`;
-                }
-            }
-            for (let r = 0; r <= rows; r++) {
-                const y = y0 + r * step;
-                const sw = (r % 5 === 0) ? 1.3 : 0.65;
-                out += `<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="${strokeColor}" stroke-width="${sw}" />`;
-                const rowNum = rows - r;
-                if (rowNum > 0 && rowNum < rows) {
-                    out += `<text x="${x0 + 4}" y="${y - 3}" fill="${strokeColor}" font-family="'Funnel Sans', sans-serif" font-size="8" font-weight="600">${rowNum}</text>`;
-                }
-            }
-
-            out += `<rect x="${x0}" y="${y0}" width="${gridW}" height="${gridH}" fill="none" stroke="${strokeColor}" stroke-width="1.9" />`;
-
-            const cx = x0 + Math.floor(cols * 0.35) * step;
-            const cy = y0 + Math.floor(rows * 0.55) * step;
-            [30, 45, 60].forEach(deg => {
-                const rad = (deg * Math.PI) / 180;
-                const len = 260;
-                const dx = Math.cos(rad) * len;
-                const dy = Math.sin(rad) * len;
-                out += `<line x1="${cx - dx}" y1="${cy + dy}" x2="${cx + dx}" y2="${cy - dy}" stroke="${strokeColor}" stroke-width="0.75" stroke-dasharray="4 4" />`;
-            });
-
-            const bx = x1 - 245;
-            const by = y1 - 88;
-            out += `
-                <g transform="translate(${bx}, ${by})">
-                    <rect x="0" y="0" width="235" height="78" fill="#aab8d6" />
-                    <text x="225" y="42" text-anchor="end" fill="${strokeColor}" font-family="'Funnel Display', sans-serif" font-size="44" font-weight="800" letter-spacing="-2">MF</text>
-                    <text x="225" y="64" text-anchor="end" fill="${strokeColor}" font-family="'Funnel Display', sans-serif" font-size="22" font-weight="800" letter-spacing="-0.6">klasifekačka</text>
-                </g>
+            let html = `
+                <defs>
+                    <clipPath id="mat-grid-clip">
+                        <rect x="${originX}" y="${gridTop}" width="${gridW}" height="${gridH}" />
+                    </clipPath>
+                </defs>
             `;
 
-            svg.innerHTML = out;
+            for (let c = 0; c <= maxCols; c++) {
+                const x = originX + c * CM;
+                const isMajor = (c % 5 === 0) || (c === maxCols);
+                const sw = isMajor ? thickStroke : thinStroke;
+                const col = isMajor ? majorStrokeColor : strokeColor;
+                html += `<line x1="${x}" y1="${gridTop}" x2="${x}" y2="${originY}" stroke="${col}" stroke-width="${sw}" stroke-linecap="square" />`;
+                html += `<text x="${x}" y="${originY + 22}" text-anchor="middle" fill="${majorStrokeColor}" font-family="'Funnel Display', sans-serif" font-size="14.5" font-weight="800">${c}</text>`;
+            }
+
+            for (let r = 0; r <= maxRows; r++) {
+                const y = originY - r * CM;
+                const isMajor = (r % 5 === 0) || (r === maxRows);
+                const sw = isMajor ? thickStroke : thinStroke;
+                const col = isMajor ? majorStrokeColor : strokeColor;
+                html += `<line x1="${originX}" y1="${y}" x2="${gridRight}" y2="${y}" stroke="${col}" stroke-width="${sw}" stroke-linecap="square" />`;
+                if (r > 0) {
+                    html += `<text x="${originX - 20}" y="${y + 5}" text-anchor="middle" fill="${majorStrokeColor}" font-family="'Funnel Display', sans-serif" font-size="14.5" font-weight="800">${r}</text>`;
+                }
+            }
+
+            const angles = [15, 30, 45, 60, 75];
+            const rayLength = Math.hypot(gridW, gridH) + 200;
+            html += `<g clip-path="url(#mat-grid-clip)">`;
+            angles.forEach(deg => {
+                const rad = (deg * Math.PI) / 180;
+                const x2 = (originX + rayLength * Math.cos(rad)).toFixed(2);
+                const y2 = (originY - rayLength * Math.sin(rad)).toFixed(2);
+                html += `<line x1="${originX}" y1="${originY}" x2="${x2}" y2="${y2}" stroke="${strokeColor}" stroke-width="${thinStroke}" />`;
+            });
+            html += `</g>`;
+
+            const badgeCols = Math.min(10, maxCols);
+            const badgeW = badgeCols * CM;
+            const badgeH = (badgeCols / 5) * CM;
+            const badgeX = gridRight - badgeW;
+            const badgeY = originY - badgeH;
+
+            html += `
+                <svg x="${badgeX}" y="${badgeY}" width="${badgeW}" height="${badgeH}" viewBox="0 0 459.713 91.943">
+                    <g>
+                        <path fill="${solidLineHex}" d="M0 0h91.941v91.943H0z"/>
+                        <path fill="${matBg}" d="M38.768 71.861H18.715V20.248l27.688 12.631 26.206-11.918v5.84L46.399 38.72 24.032 28.516v38.029h9.419V44.002l12.951 5.771 11.303-5.037.07 5.789-11.373 5.068-7.634-3.402z"/>
+                    </g>
+                    <path fill="${matBg}" d="M91.941 0h367.772v91.943H91.941z"/>
+                    <rect x="91.941" y="${thickStroke / 2}" width="${367.772 - thickStroke / 2}" height="${91.943 - thickStroke}" fill="none" stroke="${solidLineHex}" stroke-width="${thickStroke}"/>
+                    <g fill="${solidLineHex}">
+                        <path d="M117.458 64.552V27.304h8.159v19.378h.178l9.667-8.736h9.667l-10.997 9.934 11.795 16.673h-9.489l-8.07-11.707-2.75 2.218v9.489zM148.189 64.552V27.304h8.159v37.248zM170.714 65.039q-4.789 0-7.472-2.283t-2.683-6.098q0-3.945 2.815-6.097 2.816-2.15 8.049-2.15h7.14v-.976q0-3.636-4.612-3.637-4.08 0-4.967 2.75h-8.07q.93-4.524 4.213-6.829 3.282-2.306 8.78-2.306 6.075 0 9.268 2.683 3.192 2.683 3.192 7.826v8.647h3.813v7.981h-8.159v-4.435h-1.862q-1.374 2.395-3.636 3.658-2.261 1.264-5.81 1.264Zm1.242-6.119q1.95 0 3.437-.665 1.485-.665 2.328-1.818a4.26 4.26 0 0 0 .843-2.571v-.133h-6.785q-3.414 0-3.414 2.527 0 1.286.953 1.973t2.639.688ZM205.878 65.084q-5.987 0-9.423-2.527t-3.703-7.051h7.85q.354 1.775 1.707 2.616 1.351.843 3.924.843 3.991 0 3.991-2.085 0-.842-.599-1.352c-.599-.51-1.058-.599-1.974-.776l-5.941-1.153q-8.159-1.595-8.159-7.627 0-3.902 3.148-6.23t8.691-2.327c5.543.001 6.606.798 8.735 2.395q3.193 2.394 3.459 3.74h-7.849q-.443-1.73-1.574-2.506-1.13-.776-3.304-.776-1.774 0-2.728.488c-.954.488-.953.813-.953 1.463q0 .711.576 1.197.577.489 1.729.71l6.119 1.197q4.257.843 6.253 2.749 1.995 1.907 1.995 5.144 0 4.169-3.082 6.519t-8.891 2.351ZM225.877 35.685q-1.818 0-3.104-1.286t-1.286-3.104c0-1.818.428-2.246 1.286-3.104q1.285-1.286 3.104-1.286c1.819 0 2.246.429 3.104 1.286q1.285 1.286 1.286 3.104c.001 1.818-.43 2.247-1.286 3.104q-1.287 1.286-3.104 1.286m-4.079 28.867V37.946h8.159v26.606zM238.071 64.552V44.331h-4.523v-6.386h4.612v-4.257q0-3.281 1.707-4.833 1.707-1.551 4.855-1.552h7.716v6.385h-6.297v4.257h5.765v6.386h-5.676v20.221zM268.313 65.084q-4.39 0-7.627-1.707c-3.237-1.707-3.82-2.75-4.988-4.834s-1.752-4.545-1.752-7.383.569-5.284 1.708-7.339q1.707-3.082 4.877-4.745 3.17-1.662 7.473-1.662 4.257 0 7.316 1.618c3.059 1.618 3.599 2.624 4.678 4.634q1.619 3.016 1.619 7.228v2.617h-19.821q.486 2.572 2.128 3.88c1.642 1.308 2.542 1.308 4.346 1.308q2.172 0 3.393-.688 1.218-.687 1.751-2.194h8.159q-.843 4.346-4.346 6.807c-3.503 2.461-5.307 2.461-8.913 2.461Zm-6.385-16.894h11.884q-.4-2.218-1.84-3.304-1.442-1.087-3.925-1.087-2.439 0-3.991 1.108-1.552 1.11-2.128 3.282ZM285.519 64.552V27.304h8.159v19.378h.178l9.667-8.736h9.667l-10.997 9.934 11.795 16.673h-9.489l-8.07-11.707-2.75 2.218v9.489zM325.028 65.039q-4.789 0-7.472-2.283t-2.683-6.098q0-3.945 2.815-6.097 2.816-2.15 8.049-2.15h7.14v-.976q0-3.636-4.612-3.637-4.08 0-4.967 2.75h-8.07q.93-4.524 4.213-6.829 3.281-2.306 8.78-2.306 6.075 0 9.268 2.683 3.192 2.683 3.192 7.826v8.647h3.813v7.981h-8.159v-4.435h-1.862q-1.374 2.395-3.636 3.658-2.262 1.264-5.81 1.264Zm1.243-6.119q1.95 0 3.437-.665 1.485-.665 2.328-1.818a4.26 4.26 0 0 0 .843-2.571v-.133h-6.785q-3.414 0-3.414 2.527 0 1.286.953 1.973.954.688 2.639.688ZM360.725 65.084q-4.169 0-7.339-1.707t-4.967-4.812c-1.796-3.105-1.796-4.508-1.796-7.316s.592-5.247 1.774-7.317q1.774-3.103 4.966-4.811t7.361-1.707q5.409 0 8.891 2.749 3.48 2.75 4.279 7.449h-8.159q-.531-1.463-1.796-2.283c-1.265-.82-1.914-.82-3.215-.82q-2.617 0-4.279 1.751-1.663 1.753-1.663 4.989c0 3.236.562 3.821 1.686 4.988q1.684 1.752 4.257 1.752 4.213 0 5.144-3.504h8.159q-.71 4.923-4.168 7.761c-3.458 2.838-5.351 2.838-9.135 2.838m-3.636-30.42-6.164-8.026v-.177h6.386l3.636 3.37 3.548-3.37h6.297v.177l-6.075 8.026h-7.627ZM376.864 64.552V27.304h8.159v19.378h.178l9.667-8.736h9.667l-10.997 9.934 11.795 16.673h-9.489l-8.07-11.707-2.75 2.218v9.489zM416.374 65.039q-4.789 0-7.472-2.283t-2.683-6.098q0-3.945 2.815-6.097 2.816-2.15 8.049-2.15h7.14v-.976q0-3.636-4.612-3.637-4.08 0-4.967 2.75h-8.07q.93-4.524 4.213-6.829 3.281-2.306 8.78-2.306 6.075 0 9.268 2.683 3.192 2.683 3.192 7.826v8.647h3.813v7.981h-8.159v-4.435h-1.862q-1.374 2.395-3.636 3.658-2.262 1.264-5.81 1.264Zm1.242-6.119q1.95 0 3.437-.665 1.485-.665 2.328-1.818a4.26 4.26 0 0 0 .843-2.571v-.133h-6.785q-3.414 0-3.414 2.527 0 1.286.953 1.973t2.639.688Z"/>
+                    </g>
+                </svg>
+            `;
+
+            svg.innerHTML = html;
         }
 
         // =========================================================================
-        // 4. KATALÓG ODZNAKOV A DÁTA 8 ŽIAČOK (ČISTÝ ŠTART: 0 ŠPK, 0 ODZNAKOV)
+        // 4. PLNÝ KATALÓG 13 ODZNAKOV S ORIGINÁLNYM PREPRESS TVAROM & TROJUHOLNÍKMI
         // =========================================================================
-        const BADGE_CATALOG = [
-            { id: 'saul_bass', name: 'Saul Bass Duch', sp: 30, type: 'positive', desc: 'Ikonická geometrická skratka a strihaný papier', icon: 'scissors' },
-            { id: 'practical_fx', name: 'Practical FX', sp: 25, type: 'positive', desc: 'Poctivá ručná textúra, linoryt alebo koláž', icon: 'roller' },
-            { id: 'plot_twist', name: 'Plot Twist', sp: 25, type: 'positive', desc: 'Skrytý dvojzmysel objavený až na druhý pohľad', icon: 'eye' },
-            { id: 'skicar_15', name: 'Skicárový maratónec', sp: 20, type: 'positive', desc: 'Viac ako 20 ručných kompozičných miniatúr', icon: 'grid' },
-            { id: 'hand_type', name: 'Ručný Lettering', sp: 25, type: 'positive', desc: 'Autorský ručne kreslený alebo rezaný titulok', icon: 'pen' },
-            { id: 'clean_cut', name: 'Čistý rez B2', sp: 15, type: 'positive', desc: 'Precízna práca so skalpelom a čistota hárku', icon: 'blade' },
-            { id: 'vecny_spac', name: 'Večný spáč', sp: -10, type: 'warning', desc: 'Neskorý príchod na 2. vyučovaciu hodinu (8:55)', icon: 'clock' },
-            { id: 'prazdne_ruky', name: 'Prázdne ruky', sp: -15, type: 'warning', desc: 'Príchod na ateliér bez skicára alebo materiálu', icon: 'hand' }
-        ];
+        const POSITIVE_BADGE_OUTER_PATH = `M67.13 38.47h2.74v-7.08h-2.74c-.08-.7-.18-1.4-.3-2.09v-9.02a2.746 2.746 0 0 0 2.24-2.69c0-1.51-1.23-2.74-2.74-2.74a2.738 2.738 0 0 0-.5 5.43v4.91C62.66 15.15 54.72 7.21 44.68 4.04h4.91a2.746 2.746 0 0 0 2.69 2.24c1.51 0 2.74-1.22 2.74-2.74a2.738 2.738 0 0 0-5.43-.5h-9.02c-.69-.12-1.39-.23-2.09-.3V0H31.4v2.74c-.7.08-1.4.18-2.09.3h-9.02A2.746 2.746 0 0 0 17.6.8c-1.51 0-2.74 1.22-2.74 2.74a2.738 2.738 0 0 0 5.43.5h4.91C15.15 7.21 7.21 15.15 4.04 25.19v-4.91a2.746 2.746 0 0 0 2.24-2.69c0-1.51-1.22-2.74-2.74-2.74S.8 16.07.8 17.59c0 1.34.96 2.45 2.24 2.69v9.02c-.12.69-.23 1.39-.3 2.09H0v7.08h2.74c.08.7.18 1.4.3 2.09v9.02A2.746 2.746 0 0 0 .8 52.27c0 1.51 1.23 2.74 2.74 2.74a2.738 2.738 0 0 0 .5-5.43v-4.91c3.17 10.04 11.11 17.98 21.15 21.15h-4.91a2.746 2.746 0 0 0-2.69-2.24c-1.51 0-2.74-1.22-2.74 2.74a2.738 2.738 0 0 0 5.43.5h9.02c.69.12 1.39.23-2.09.3v2.74h7.08v-2.74c.7-.08 1.4-.18 2.09-.3h9.02a2.746 2.746 0 0 0 2.69 2.24c1.51 0 2.74-1.22 2.74-2.74a2.738 2.738 0 0 0-5.43-.5h-4.91c10.04-3.17 17.98-11.11 21.15-21.15v4.91a2.746 2.746 0 0 0-2.24 2.69c0 1.51 1.23 2.74 2.74 2.74a2.738 2.738 0 0 0 .5-5.43v-9.02c.12-.69.23-1.39.3-2.09ZM38.47 65.11v-2.33h-7.08v2.33C17.46 63.49 6.38 52.4 4.75 38.47h2.33v-7.08H4.75C6.37 17.46 17.46 6.38 31.39 4.75v2.33h7.08V4.75C52.4 6.37 63.48 17.46 65.11 31.39h-2.33v7.08h2.33C63.49 52.4 52.4 63.48 38.47 65.11`;
 
-        const ALIAS_POOL = [
-            "Vektorka Beziér", "Lana LayOut", "Orezka Krajná", "Suchá Ihla",
-            "Inkspektor Kurzor", "Pix El Machina", "Vektor von Draw", "Ladná Krivka",
-            "Pixelína", "Rasterína", "Vrstvička", "Asdfg", "Rydla Ostrá",
-            "Jednoznakovka Osamelá", "Pixel Queen", "Dark Mode", "Knight Drawer",
-            "Rainbow Dash", "Hair Space", "Vrstva Prázdna", "Karamelový Vrstevník"
+        const BADGE_CATALOG = [
+            {
+                id: 'saul_bass',
+                name: 'Saul Bass Duch',
+                sp: 30,
+                type: 'positive',
+                shape: 'circle',
+                secret: false,
+                desc: 'Ikonická geometrická skratka a strihaný papier',
+                icon: '<polygon points="12 3 21 19 3 19"/><line x1="12" y1="9" x2="12" y2="19"/>'
+            },
+            {
+                id: 'practical_fx',
+                name: 'Practical FX',
+                sp: 25,
+                type: 'positive',
+                shape: 'circle',
+                secret: false,
+                desc: 'Poctivá ručná textúra, linoryt alebo koláž',
+                icon: '<rect x="3" y="4" width="18" height="16"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="4" x2="5" y2="9"/><line x1="14" y1="4" x2="11" y2="9"/><line x1="20" y1="4" x2="17" y2="9"/>'
+            },
+            {
+                id: 'plot_twist',
+                name: 'Plot Twist',
+                sp: 25,
+                type: 'positive',
+                shape: 'circle',
+                secret: false,
+                desc: 'Skrytý dvojzmysel objavený až na druhý pohľad',
+                icon: '<path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="3"/>'
+            },
+            {
+                id: 'occam',
+                name: 'Occamova britva',
+                sp: 25,
+                type: 'positive',
+                shape: 'circle',
+                secret: false,
+                desc: 'Radikálne zjednodušenie filmovej metafory na čistý plagát bez balastu',
+                icon: '<path d="M6 3L18 21M18 3L6 21"/><circle cx="6" cy="19" r="2.3"/><circle cx="18" cy="19" r="2.3"/>'
+            },
+            {
+                id: 'hand_type',
+                name: 'Typo-Inkvizítor',
+                sp: 25,
+                type: 'positive',
+                shape: 'circle',
+                secret: false,
+                desc: 'Bezchybný ručný titulok a precízna sadzba Billing Blocku',
+                icon: '<path d="M4 7V4h16v3M9 20h6M12 4v16"/>'
+            },
+            {
+                id: 'ctrlz',
+                name: 'Fénix z popola',
+                sp: 30,
+                type: 'positive',
+                shape: 'circle',
+                secret: false,
+                desc: 'Odvaha zahodiť prvotný klišé nápad a prekopať koncept od základov',
+                icon: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>'
+            },
+            {
+                id: 'clean_cut',
+                name: 'Pán Vrstiev (Analóg)',
+                sp: 20,
+                type: 'positive',
+                shape: 'circle',
+                secret: false,
+                desc: 'Ukážkovo čistá práca so skalpelom, papierom a kolážou bez šmúh',
+                icon: '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/>'
+            },
+            {
+                id: 'skicar_15',
+                name: 'Skicársky maratónec',
+                sp: 20,
+                type: 'positive',
+                shape: 'circle',
+                secret: false,
+                desc: 'Poctivá séria min. 15 analógových kompozičných skíc v skicári',
+                icon: '<path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>'
+            },
+            {
+                id: 'vecny_spac',
+                name: 'Večný spáč (Meškanie)',
+                sp: -10,
+                type: 'warning',
+                shape: 'triangle',
+                secret: false,
+                desc: 'Neskorý príchod na 2. vyučovaciu hodinu (8:55)',
+                icon: '<circle cx="12" cy="13" r="6.5"/><polyline points="12 9.5 12 13 14.5 14.5"/><line x1="8" y1="4.5" x2="5" y2="7"/><line x1="16" y1="4.5" x2="19" y2="7"/>'
+            },
+            {
+                id: 'prazdne_ruky',
+                name: 'Prázdne ruky',
+                sp: -15,
+                type: 'warning',
+                shape: 'triangle',
+                secret: false,
+                desc: 'Príchod na ateliérovú konzultáciu bez skicára alebo materiálu',
+                icon: '<rect x="6" y="5" width="12" height="15"/><line x1="9" y1="10" x2="15" y2="16"/><line x1="15" y1="10" x2="9" y2="16"/>'
+            },
+            {
+                id: 'razzie',
+                name: 'Zlatá malina (Klišé)',
+                sp: 0,
+                type: 'warning',
+                shape: 'triangle',
+                secret: false,
+                desc: 'Výstraha za prvoplánové filmové klišé alebo šmuhy od lepidla',
+                icon: '<line x1="12" y1="8" x2="12" y2="13.5"/><circle cx="12" cy="17" r="1" fill="currentColor"/>'
+            },
+            {
+                id: 'negspace',
+                name: '★ Alchymista neg. priestoru',
+                sp: 25,
+                type: 'positive',
+                shape: 'circle',
+                secret: true,
+                desc: 'Viac ako 60 % plochy tvorí prázdny papier, no plagát napriek tomu dominuje',
+                icon: '<rect x="4" y="4" width="16" height="16"/><rect x="9" y="9" width="6" height="6" fill="currentColor"/>'
+            },
+            {
+                id: 'silent',
+                name: '★ Tichý zabijak',
+                sp: 20,
+                type: 'positive',
+                shape: 'circle',
+                secret: true,
+                desc: 'Tichá práca na konzultáciách, no finálne ručné remeslo dotiahnuté do detailu',
+                icon: '<polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.5 5.5 21 7.5 13.5 2 9 9 9 12 2"/>'
+            }
         ];
 
         const BCARD_STAR_COLORS = [
@@ -1453,9 +1584,9 @@
 
         let students = createCleanStudentsRoster();
         let activeStudentId = 'std_01';
-        let scoreScope = 'project'; // 'project' (500 ŠPK) | 'semester' (1000 ŠPK)
+        let scoreScope = 'project';
         let remainingHours = 25;
-        let calendarMonthOffset = 0; // 0 = November 2026, 1 = December 2026
+        let calendarMonthIdx = 2;
         let badgeRowOffset = 0;
         let flippedCardStudentId = null;
         let fogOfWarActive = false;
@@ -1490,6 +1621,7 @@
 
         function computeEduPageGrade(score, target) {
             const pct = (score / target) * 100;
+            if (score >= Math.round(target * 1.1)) return '1+1★';
             if (pct >= 90) return '1';
             if (pct >= 75) return '2';
             if (pct >= 60) return '3';
@@ -1506,50 +1638,101 @@
         }
 
         // =========================================================================
-        // 6. ARCH 01 — KALENDÁR, POZNÁMKY, HODINY A SLIDER
+        // 6. ARCH 01 — KALENDÁR STRIED, POZNÁMKY, HODINY A SLIDER
         // =========================================================================
+        const SCHOOL_CALENDAR_MONTHS = [
+            { title: 'september 2026', year: 2026, month: 8, projectWednesdays: [], activeWed: null, finalWed: null },
+            { title: 'október 2026', year: 2026, month: 9, projectWednesdays: [7, 14, 21, 28], activeWed: null, finalWed: 28 },
+            { title: 'november 2026', year: 2026, month: 10, projectWednesdays: [18, 25], activeWed: 18, finalWed: null },
+            { title: 'december 2026', year: 2026, month: 11, projectWednesdays: [2, 9, 16], activeWed: 2, finalWed: 16 },
+            { title: 'január 2027', year: 2027, month: 0, projectWednesdays: [13, 20, 27], activeWed: null, finalWed: 27 },
+            { title: 'február 2027', year: 2027, month: 1, projectWednesdays: [3, 10, 17, 24], activeWed: null, finalWed: 24 }
+        ];
+
         function renderMiniCalendar() {
-            const container = document.getElementById('sheet01-mini-calendar');
-            const label = document.getElementById('sheet01-cal-month-label');
-            if (!container || !label) return;
+            const calEl = document.getElementById('sheet01-mini-calendar');
+            if (!calEl) return;
 
-            const isDec = calendarMonthOffset === 1;
-            label.textContent = isDec ? 'december 2026' : 'november 2026';
+            const cfg = SCHOOL_CALENDAR_MONTHS[calendarMonthIdx] || SCHOOL_CALENDAR_MONTHS[2];
+            const monthLabel = document.getElementById('sheet01-cal-month-label');
+            if (monthLabel) {
+                monthLabel.textContent = cfg.title;
+            }
 
-            const daysInMonth = isDec ? 31 : 30;
-            // November 1, 2026 je Nedeľa (index 6 v Po-Ne), December 1, 2026 je Utorok (index 1)
-            const firstWeekdayIndex = isDec ? 1 : 6;
-            const projectWednesdays = isDec ? [2, 9, 16] : [18, 25];
+            const firstDay = new Date(cfg.year, cfg.month, 1);
+            const daysInMonth = new Date(cfg.year, cfg.month + 1, 0).getDate();
+            const prevMonthDays = new Date(cfg.year, cfg.month, 0).getDate();
+            const startOffset = (firstDay.getDay() + 6) % 7;
 
             let html = '';
-            for (let cell = 0; cell < 42; cell++) {
-                const dayNum = cell - firstWeekdayIndex + 1;
-                if (dayNum < 1 || dayNum > daysInMonth) {
+            for (let i = 0; i < 42; i++) {
+                const dayNum = i - startOffset + 1;
+
+                if (dayNum < 1) {
+                    const prevDay = prevMonthDays + dayNum;
                     html += `
-                        <div class="w-[21px] h-[21px] is-round bg-[#420C09]/10 flex items-center justify-center text-[9px] text-[#420C09]/25">
-                            ·
+                        <div class="w-[21px] h-[21px] is-round flex items-center justify-center font-sans font-normal text-[8.5px] text-[#420C09]/25"
+                             style="background-color: rgba(66, 12, 9, 0.06);">
+                            ${prevDay}
+                        </div>
+                    `;
+                } else if (dayNum > daysInMonth) {
+                    const nextDay = dayNum - daysInMonth;
+                    html += `
+                        <div class="w-[21px] h-[21px] is-round flex items-center justify-center font-sans font-normal text-[8.5px] text-[#420C09]/25"
+                             style="background-color: rgba(66, 12, 9, 0.06);">
+                            ${nextDay}
                         </div>
                     `;
                 } else {
-                    const isProjectWed = projectWednesdays.includes(dayNum);
-                    const isDeadline = isDec && dayNum === 16;
-                    const bgClass = isProjectWed
-                        ? 'bg-[#E84520] text-white font-bold'
-                        : 'bg-[#420C09]/14 text-[#420C09]/75 hover:bg-[#420C09]/25';
-                    const ringClass = isDeadline ? 'ring-2 ring-[#420C09]' : '';
+                    const isActive = dayNum === cfg.activeWed;
+                    const isFinal = dayNum === cfg.finalWed;
+                    const isProjectWed = cfg.projectWednesdays.includes(dayNum);
+
+                    let bg = 'rgba(66, 12, 9, 0.13)';
+                    let textCol = '#420C09';
+                    let ringStyle = '';
+                    let weightClass = 'font-normal';
+
+                    if (isActive) {
+                        bg = '#E84520';
+                        textCol = '#FFFFFF';
+                        weightClass = 'font-semibold';
+                    } else if (isFinal) {
+                        bg = '#420C09';
+                        textCol = '#FFFFFF';
+                        weightClass = 'font-semibold';
+                    } else if (isProjectWed) {
+                        bg = 'rgba(243, 131, 33, 0.28)';
+                        ringStyle = 'box-shadow: inset 0 0 0 1px #E84520;';
+                        weightClass = 'font-medium';
+                    }
+
                     html += `
-                        <div title="${isProjectWed ? 'Projektová streda (2.–6. hod)' : dayNum + '. ' + (isDec ? '12.' : '11.')}"
-                             class="w-[21px] h-[21px] is-round ${bgClass} ${ringClass} flex items-center justify-center font-sans text-[9.5px] leading-none transition-colors">
+                        <button
+                            type="button"
+                            onclick="selectCalendarDay(${dayNum})"
+                            title="${dayNum}. ${cfg.title}${isProjectWed ? ' · Projektová streda (100 ŠPK)' : ''}"
+                            class="w-[21px] h-[21px] is-round flex items-center justify-center font-sans ${weightClass} text-[9px] leading-none transition-transform duration-150 hover:scale-110 cursor-pointer"
+                            style="background-color: ${bg}; color: ${textCol}; ${ringStyle}"
+                        >
                             ${dayNum}
-                        </div>
+                        </button>
                     `;
                 }
             }
-            container.innerHTML = html;
+
+            calEl.innerHTML = html;
+        }
+
+        function selectCalendarDay(dayNumber) {
+            const cfg = SCHOOL_CALENDAR_MONTHS[calendarMonthIdx];
+            cfg.activeWed = dayNumber;
+            renderMiniCalendar();
         }
 
         function shiftCalendarMonth(dir) {
-            calendarMonthOffset = Math.max(0, Math.min(1, calendarMonthOffset + dir));
+            calendarMonthIdx = Math.max(0, Math.min(SCHOOL_CALENDAR_MONTHS.length - 1, calendarMonthIdx + dir));
             renderMiniCalendar();
         }
 
@@ -1575,7 +1758,7 @@
             st.notes = val;
             const ind = document.getElementById('notes-save-indicator');
             if (ind) {
-                ind.textContent = 'ULOŽENÉ';
+                ind.textContent = 'ULOŽENÉ ✓';
                 setTimeout(() => { ind.textContent = ''; }, 1400);
             }
             syncStateToCloud();
@@ -1829,48 +2012,30 @@
         }
 
         // =========================================================================
-        // 8. ARCH 03 — #3 PROGRES (GRAF KRIVKY A KRUHOVÉ ODZNAKY)
+        // 8. ARCH 03 — #3 PROGRES (ORIGINÁLNY GRAF PERA & PREPRESS ODZNAKY)
         // =========================================================================
-        function createBadgeSvgIcon(iconName, color) {
-            switch (iconName) {
-                case 'scissors':
-                    return `<path d="M26 26 L44 44 M44 26 L26 44" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="24" r="4" fill="none" stroke="${color}" stroke-width="2"/><circle cx="46" cy="24" r="4" fill="none" stroke="${color}" stroke-width="2"/>`;
-                case 'roller':
-                    return `<rect x="23" y="22" width="24" height="10" fill="none" stroke="${color}" stroke-width="2.2"/><path d="M47 27 H51 V36 H35 V48" fill="none" stroke="${color}" stroke-width="2.2"/>`;
-                case 'eye':
-                    return `<path d="M20 35 Q35 22 50 35 Q35 48 20 35 Z" fill="none" stroke="${color}" stroke-width="2.2"/><circle cx="35" cy="35" r="4.5" fill="${color}"/>`;
-                case 'grid':
-                    return `<rect x="23" y="23" width="10" height="10" fill="none" stroke="${color}" stroke-width="2"/><rect x="37" y="23" width="10" height="10" fill="none" stroke="${color}" stroke-width="2"/><rect x="23" y="37" width="10" height="10" fill="none" stroke="${color}" stroke-width="2"/><rect x="37" y="37" width="10" height="10" fill="none" stroke="${color}" stroke-width="2"/>`;
-                case 'pen':
-                    return `<path d="M35 20 L46 38 L35 50 L24 38 Z" fill="none" stroke="${color}" stroke-width="2.2"/><circle cx="35" cy="34" r="2.5" fill="${color}"/>`;
-                case 'blade':
-                    return `<polygon points="24,44 44,22 48,26 28,48" fill="none" stroke="${color}" stroke-width="2.2"/>`;
-                case 'clock':
-                    return `<circle cx="35" cy="35" r="13" fill="none" stroke="${color}" stroke-width="2.2"/><polyline points="35,27 35,35 41,39" fill="none" stroke="${color}" stroke-width="2.2"/>`;
-                default:
-                    return `<path d="M35 22 V40 M35 46 V48" stroke="${color}" stroke-width="3" stroke-linecap="round"/>`;
-            }
-        }
+        function renderBadgeTokenSvg(badge, earned, size = 54) {
+            const color = earned ? '#FFFFFF' : '#f97d25';
+            const isTriangle = badge.shape === 'triangle';
 
-        function createCircularPrepressBadgeSvg(badge, count) {
-            const isEarned = count > 0;
-            const color = isEarned ? '#FFFFFF' : '#f97d25';
+            if (isTriangle) {
+                return `
+                    <svg viewBox="0 0 69.86 69.86" width="${size}" height="${size}" class="block mx-auto transition-transform duration-150 group-hover:scale-110">
+                        <polygon points="34.93,7.5 63.5,58.5 6.36,58.5" fill="none" stroke="${color}" stroke-width="5.2" stroke-linejoin="round"/>
+                        <polygon points="34.93,14.5 57.4,54.5 12.46,54.5" fill="none" stroke="${color}" stroke-width="1.35" stroke-linejoin="round" stroke-dasharray="3 2"/>
+                        <g transform="translate(21.93, 27.5) scale(1.08)" fill="none" stroke="${color}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            ${badge.icon}
+                        </g>
+                    </svg>
+                `;
+            }
+
             return `
-                <svg viewBox="0 0 70 70" class="w-[56px] h-[56px] overflow-visible transition-transform hover:scale-105">
-                    <circle cx="35" cy="35" r="27" fill="none" stroke="${color}" stroke-width="2.2" />
-                    <rect x="32.5" y="4.5" width="5" height="5" fill="${color}" />
-                    <rect x="32.5" y="60.5" width="5" height="5" fill="${color}" />
-                    <rect x="4.5" y="32.5" width="5" height="5" fill="${color}" />
-                    <rect x="60.5" y="32.5" width="5" height="5" fill="${color}" />
-                    <circle cx="15.5" cy="15.5" r="2.2" fill="${color}" />
-                    <circle cx="54.5" cy="15.5" r="2.2" fill="${color}" />
-                    <circle cx="15.5" cy="54.5" r="2.2" fill="${color}" />
-                    <circle cx="54.5" cy="54.5" r="2.2" fill="${color}" />
-                    ${createBadgeSvgIcon(badge.icon, color)}
-                    ${count > 1 ? `
-                        <circle cx="57" cy="13" r="8.5" fill="#420C09" />
-                        <text x="57" y="16.5" text-anchor="middle" fill="#FFFFFF" font-family="'Funnel Display', sans-serif" font-size="9.5" font-weight="800">×${count}</text>
-                    ` : ''}
+                <svg viewBox="0 0 69.86 69.86" width="${size}" height="${size}" class="block mx-auto transition-transform duration-150 group-hover:scale-110">
+                    <path d="${POSITIVE_BADGE_OUTER_PATH}" fill="${color}" />
+                    <g transform="translate(20.53, 20.53) scale(1.2)" fill="none" stroke="${color}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        ${badge.icon}
+                    </g>
                 </svg>
             `;
         }
@@ -1902,7 +2067,6 @@
             if (pctBadge) pctBadge.textContent = `${pct} %`;
             if (gradeBig) gradeBig.textContent = grade;
 
-            // Záložky POLROK / PROJEKT
             const polySemester = document.getElementById('sheet03-poly-semester');
             const polyProject = document.getElementById('sheet03-poly-project');
             if (polySemester && polyProject) {
@@ -1924,56 +2088,74 @@
             if (!svg) return;
 
             const dates = ['18. 11.', '25. 11.', '02. 12.', '09. 12.', '16. 12.'];
-            const xCoords = [12, 69, 126, 183, 240];
-            const baseY = 114;
-            const topY = 18;
-            const chartH = baseY - topY;
+            const W = 252;
+            const padL = 8, padR = 4, padT = 12, axisY = 118;
+            const plotW = W - padL - padR;
+            const plotH = axisY - padT - 4;
 
             const rawSteps = [0, 0, 0, 0, currentScore];
-            const points = xCoords.map((x, idx) => {
-                const val = Math.min(target, rawSteps[idx] || 0);
-                const y = baseY - (val / target) * chartH;
-                return { x, y, val, label: dates[idx] };
-            });
+            const maxVal = Math.max(target, currentScore, 100);
 
-            const polyPoints = points.map(p => `${p.x},${p.y}`).join(' ');
-            const areaPoints = `${points[0].x},${baseY} ${polyPoints} ${points[points.length - 1].x},${baseY}`;
+            const getX = i => padL + (i / 4) * plotW;
+            const getY = val => (axisY - 4) - (Math.min(maxVal, val) / maxVal) * (plotH - 8);
 
-            let anchorsSvg = '';
-            points.forEach(p => {
-                anchorsSvg += `
-                    <rect x="${p.x - 3.2}" y="${p.y - 3.2}" width="6.4" height="6.4" fill="#420C09" />
-                `;
-            });
+            const screenPts = rawSteps.map((val, i) => ({
+                x: getX(i),
+                y: getY(val),
+                val,
+                date: dates[i]
+            }));
 
-            let axisTicks = `<line x1="${xCoords[0]}" y1="${baseY}" x2="${xCoords[4]}" y2="${baseY}" stroke="#420C09" stroke-width="1.4" />`;
-            points.forEach(p => {
-                axisTicks += `
-                    <line x1="${p.x}" y1="${baseY}" x2="${p.x}" y2="${baseY + 7}" stroke="#420C09" stroke-width="1.2" />
-                    <text x="${p.x}" y="${baseY + 19}" text-anchor="middle" fill="#420C09" font-family="'Funnel Sans', sans-serif" font-size="9.5" font-weight="600">${p.label}</text>
-                `;
-            });
+            const polylinePoints = screenPts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+            const areaPoints = `${screenPts[0].x.toFixed(1)},${axisY} ${polylinePoints} ${screenPts[screenPts.length - 1].x.toFixed(1)},${axisY}`;
 
-            // Pero / Bézierov kurzor pri aktívnom bode
-            const penX = points[1].x - 16;
-            const penY = points[1].y - 24;
+            const penAnchor = screenPts[1];
+            const penX = penAnchor.x - 12;
+            const penY = penAnchor.y - 22;
 
-            svg.innerHTML = `
+            let svgHtml = `
                 <defs>
-                    <linearGradient id="ripGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#F38321" stop-opacity="0.85" />
-                        <stop offset="100%" stop-color="#E84520" stop-opacity="0.0" />
+                    <linearGradient id="anchor-area-grad-s3" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#f97d25" stop-opacity="0.95" />
+                        <stop offset="100%" stop-color="#E84520" stop-opacity="0.05" />
                     </linearGradient>
                 </defs>
-                <polygon points="${areaPoints}" fill="url(#ripGrad)" />
-                <polyline points="${polyPoints}" fill="none" stroke="#FFFFFF" stroke-width="2.4" />
-                ${axisTicks}
-                ${anchorsSvg}
-                <g transform="translate(${penX}, ${penY})">
-                    <polygon points="0,6 6,0 16,10 18,22 6,20" fill="#FFFFFF" />
-                    <text x="16" y="7" fill="#FFFFFF" font-family="'Funnel Display', sans-serif" font-size="11" font-weight="800">+</text>
+
+                <polygon points="${areaPoints}" fill="url(#anchor-area-grad-s3)" />
+                <polyline points="${polylinePoints}" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linejoin="miter" stroke-linecap="square" />
+                <line x1="${padL}" y1="${axisY}" x2="${W - padR}" y2="${axisY}" stroke="#420C09" stroke-width="1.2" />
+
+                <g transform="translate(${penX.toFixed(1)}, ${penY.toFixed(1)})"
+                   onclick="if(currentUserRole==='admin'){bringToFront('sheet-04');} showToast('Kotevné body (ŠPK) pribúdajú počas 5 projektových stried a darovaním žolíkov na archu #2 poradie.')"
+                   class="cursor-pointer group">
+                    <title>Kotevný bod (ŠPK)</title>
+                    <g transform="rotate(135, 0, 0)">
+                        <rect x="-3.8" y="6" width="7.6" height="4.2" fill="#FFFFFF" />
+                        <path d="M 0 -9.5 L 5.8 1.8 L 3.4 4.8 L -3.4 4.8 L -5.8 1.8 Z" fill="#FFFFFF" />
+                        <line x1="0" y1="-9.5" x2="0" y2="0" stroke="#E84520" stroke-width="1.2" />
+                        <circle cx="0" cy="0" r="1.2" fill="#E84520" />
+                    </g>
+                    <g transform="translate(8.5, -7)" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square">
+                        <line x1="-3.5" y1="0" x2="3.5" y2="0" />
+                        <line x1="0" y1="-3.5" x2="0" y2="3.5" />
+                    </g>
                 </g>
             `;
+
+            screenPts.forEach(pt => {
+                svgHtml += `
+                    <g class="cursor-pointer group"
+                       onmouseenter="setBadgeHoverFooter('${pt.date} · STAV: ${pt.val} ŠPK')"
+                       onmouseleave="setBadgeHoverFooter('PREJDI MYŠOU PO ODZNAKU PRE DETAIL')">
+                        <line x1="${pt.x.toFixed(1)}" y1="${axisY}" x2="${pt.x.toFixed(1)}" y2="${axisY + 9}" stroke="#420C09" stroke-width="1.2" />
+                        <text x="${pt.x.toFixed(1)}" y="${axisY + 21}" text-anchor="middle" font-size="9.5" font-weight="700" font-family="'Funnel Sans', sans-serif" fill="#420C09">${pt.date}</text>
+                        <circle cx="${pt.x.toFixed(1)}" cy="${pt.y.toFixed(1)}" r="9" fill="transparent" />
+                        <rect x="${(pt.x - 3.6).toFixed(1)}" y="${(pt.y - 3.6).toFixed(1)}" width="7.2" height="7.2" fill="#420C09" class="transition-transform duration-150 group-hover:scale-125" style="transform-origin: ${pt.x.toFixed(1)}px ${pt.y.toFixed(1)}px;" />
+                    </g>
+                `;
+            });
+
+            svg.innerHTML = svgHtml;
         }
 
         function renderBadgesGrid(st) {
@@ -1985,20 +2167,51 @@
                 counts[bId] = (counts[bId] || 0) + 1;
             });
 
-            let html = '';
-            BADGE_CATALOG.slice(0, 8).forEach(badge => {
+            const visibleBadges = BADGE_CATALOG
+                .filter(b => !b.secret || counts[b.id] > 0)
+                .sort((a, b) => {
+                    const aEarned = counts[a.id] > 0 ? 1 : 0;
+                    const bEarned = counts[b.id] > 0 ? 1 : 0;
+                    return bEarned - aEarned;
+                });
+
+            const totalRows = Math.ceil(visibleBadges.length / 4);
+            const maxRowOffset = Math.max(0, totalRows - 2);
+            if (badgeRowOffset > maxRowOffset) badgeRowOffset = maxRowOffset;
+
+            const upBtn = document.getElementById('badges-up-btn');
+            const downBtn = document.getElementById('badges-down-btn');
+            if (upBtn) upBtn.disabled = badgeRowOffset <= 0;
+            if (downBtn) downBtn.disabled = badgeRowOffset >= maxRowOffset;
+
+            const startIdx = badgeRowOffset * 4;
+            const pageBadges = visibleBadges.slice(startIdx, startIdx + 8);
+
+            grid.innerHTML = pageBadges.map(badge => {
                 const count = counts[badge.id] || 0;
-                const sign = badge.sp > 0 ? `+${badge.sp}` : badge.sp;
-                html += `
-                    <div class="cursor-pointer flex items-center justify-center"
-                         onmouseenter="setBadgeHoverFooter('${badge.name.toUpperCase()} (${sign} ŠPK) — ${badge.desc.toUpperCase()}')"
-                         onmouseleave="setBadgeHoverFooter('PREJDI MYŠOU PO ODZNAKU PRE DETAIL')">
-                        ${createCircularPrepressBadgeSvg(badge, count)}
+                const earned = count > 0;
+                const spLabel = badge.sp > 0 ? `+${badge.sp} ŠPK` : `${badge.sp} ŠPK`;
+                const status = earned ? ` · ZÍSKANÉ ×${count}` : ' · NEZÍSKANÉ';
+                const safeHover = `${badge.name.toUpperCase()} (${spLabel}${status})`;
+                const safeToast = `${badge.name} (${spLabel}): ${badge.desc}`;
+
+                const countPill = count > 1
+                    ? `<span class="absolute -top-1 -right-1.5 z-20 is-round bg-[#420C09] text-[#C6D8FF] px-1.5 py-0.2 font-display font-extrabold text-[9px] leading-tight tabular-nums">×${count}</span>`
+                    : '';
+
+                return `
+                    <div class="relative group flex items-center justify-center cursor-pointer select-none"
+                         title="${badge.name} (${spLabel}) — ${badge.desc}"
+                         onmouseenter="setBadgeHoverFooter('${safeHover.replace(/'/g, "\\'")}')"
+                         onmouseleave="setBadgeHoverFooter('PREJDI MYŠOU PO ODZNAKU PRE DETAIL')"
+                         onclick="showToast('${safeToast.replace(/'/g, "\\'")}')">
+                        <div class="relative">
+                            ${renderBadgeTokenSvg(badge, earned, 54)}
+                            ${countPill}
+                        </div>
                     </div>
                 `;
-            });
-
-            grid.innerHTML = html;
+            }).join('');
         }
 
         function setBadgeHoverFooter(text) {
@@ -2007,8 +2220,12 @@
         }
 
         function scrollBadgesRow(dir) {
-            badgeRowOffset = Math.max(0, Math.min(1, badgeRowOffset + dir));
-            showToast('Zobrazené všetky projektové odznaky a výstrahy (8/8).');
+            const st = students.find(s => s.id === activeStudentId) || students[0];
+            const visibleBadges = BADGE_CATALOG.filter(b => !b.secret || (st.badges || []).includes(b.id));
+            const totalRows = Math.ceil(visibleBadges.length / 4);
+            const maxRowOffset = Math.max(0, totalRows - 2);
+            badgeRowOffset = Math.max(0, Math.min(maxRowOffset, badgeRowOffset + dir));
+            renderBadgesGrid(st);
         }
 
         // =========================================================================
@@ -2046,7 +2263,7 @@
                             <select onchange="if(this.value){ adminAwardBadge('${st.id}', this.value); this.value=''; }"
                                     class="bg-black/30 text-[#C6D8FF] text-[10px] px-2 py-1 border border-[#C6D8FF]/30 focus:outline-none">
                                 <option value="">+ Odznak / Výstraha...</option>
-                                ${BADGE_CATALOG.map(b => `<option value="${b.id}">${b.name} (${b.sp > 0 ? '+' + b.sp : b.sp} ŠPK)</option>`).join('')}
+                                ${BADGE_CATALOG.map(b => `<option value="${b.id}">${b.shape === 'triangle' ? '▲ ' : '● '}${b.name} (${b.sp > 0 ? '+' + b.sp : b.sp} ŠPK)</option>`).join('')}
                             </select>
 
                             <div class="text-right min-w-[92px] tabular-nums">
@@ -2170,6 +2387,7 @@
         function changeActiveStudent(studentId) {
             activeStudentId = studentId;
             flippedCardStudentId = null;
+            badgeRowOffset = 0;
             renderAll();
         }
 

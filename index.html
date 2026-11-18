@@ -317,12 +317,9 @@
             </div>
 
             <div class="trim-box text-[#420C09]" style="padding: 18px 28px 22px 28px; overflow: hidden;">
-                <!-- Hlavička archu #0 prihlásenie -->
-                <div class="shrink-0 h-[68px] flex flex-col justify-center">
-                    <div class="text-[9.5px] font-bold uppercase tracking-widest text-white/85">
-                        ŠUP KOŠICE · GRAFICKÝ DIZAJN 3. ROČNÍK
-                    </div>
-                    <div class="flex items-baseline gap-x-3 mt-0.5">
+                <!-- Hlavička archu: čisto iba #0 prihlásenie -->
+                <div class="shrink-0 h-[68px] flex items-center">
+                    <div class="flex items-baseline gap-x-3">
                         <span class="font-display font-medium text-[38px] tracking-tight leading-none text-[#420C09] select-none">#0</span>
                         <h2 class="font-display font-medium text-[38px] tracking-tight leading-none m-0 lowercase text-white">
                             prihlásenie
@@ -381,24 +378,25 @@
         </article>
     </div>
 
-    <!-- MINIMALISTICKÁ NÁSTROJOVÁ LIŠTA V 4-FAREBNEJ SCHÉME -->
+    <!-- MINIMALISTICKÁ NÁSTROJOVÁ LIŠTA (ŽIAČKY VIDIA LEN 6 TLAČIDIEL: PROJEKT, POLROK, ZADANIE, PORADIE, PROGRES, ODHLÁSIŤ) -->
     <header id="top-app-header" class="fixed top-3 right-14 z-[9999] bg-[#420C09] text-[#C6D8FF] border-b-2 border-[#E84520] px-3.5 py-1.5 shadow-2xl flex flex-wrap items-center gap-3 text-xs">
-        <div class="flex items-center gap-1.5 font-display font-extrabold tracking-tight text-sm lowercase">
+        <div id="header-admin-brand" class="hidden items-center gap-1.5 font-display font-extrabold tracking-tight text-sm lowercase">
             <span class="text-[#F38321]">klasi</span><span class="text-white">fekačka</span>
             <span id="cloud-sync-badge" class="text-[9px] font-bold uppercase text-[#C6D8FF]/65 ml-1 hidden md:inline">● LOKÁLNY REŽIM</span>
         </div>
 
-        <span class="text-white/20">|</span>
+        <span id="header-admin-sep-1" class="hidden text-white/20">|</span>
 
-        <div class="flex items-center gap-1.5">
+        <div id="header-admin-identity" class="hidden items-center gap-1.5">
             <span class="text-[9.5px] uppercase tracking-widest text-[#C6D8FF]/65 hidden sm:inline">Identita:</span>
             <select id="active-student-select" onchange="changeActiveStudent(this.value)" class="bg-transparent text-white font-bold text-xs cursor-pointer focus:outline-none border-b border-[#F38321] pb-0.5">
             </select>
             <span id="locked-student-label" class="hidden text-white font-bold text-xs border-b border-[#F38321] pb-0.5"></span>
         </div>
 
-        <span class="text-white/20">|</span>
+        <span id="header-admin-sep-2" class="hidden text-white/20">|</span>
 
+        <!-- Prepínač rozsahu: Projekt (500) / Polrok (1000) -->
         <div class="flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-wider tabular-nums">
             <button id="top-scope-project" onclick="setScoreScope('project')" class="px-2 py-0.5 bg-[#E84520] text-white transition-colors cursor-pointer">
                 Projekt (500)
@@ -410,6 +408,7 @@
 
         <span class="text-white/20">|</span>
 
+        <!-- Rýchly skok na Tlačové archy -->
         <div class="flex items-center gap-1.5 font-display font-extrabold text-xs lowercase">
             <button onclick="bringToFront('sheet-01')" title="#1 zadanie" class="px-2 h-6 bg-[#E84520] text-white hover:bg-[#F38321] cursor-pointer">#1 zadanie</button>
             <button onclick="bringToFront('sheet-02')" title="#2 poradie" class="px-2 h-6 bg-[#C6D8FF] text-[#420C09] hover:bg-white cursor-pointer">#2 poradie</button>
@@ -417,13 +416,13 @@
             <button id="nav-btn-04" onclick="bringToFront('sheet-04')" title="#4 admin" class="hidden px-2 h-6 bg-white/15 text-[#C6D8FF] hover:bg-white hover:text-[#420C09] cursor-pointer">#4 admin</button>
         </div>
 
-        <span class="text-white/20 hidden sm:inline">|</span>
+        <span class="text-white/20">|</span>
 
         <button id="toggle-admin-btn" onclick="toggleAdminSheet()" class="hidden text-[10px] font-bold uppercase tracking-wider text-[#F38321] hover:text-white cursor-pointer">
             Skryť admin
         </button>
 
-        <button onclick="resetLayout()" title="Usporiadať archy do kaskády na rezacej podložke" class="text-[10px] font-bold uppercase tracking-wider text-[#C6D8FF]/75 hover:text-white cursor-pointer">
+        <button id="header-reset-btn" onclick="resetLayout()" title="Usporiadať archy do kaskády na rezacej podložke" class="hidden text-[10px] font-bold uppercase tracking-wider text-[#C6D8FF]/75 hover:text-white cursor-pointer">
             ⊕ Reset
         </button>
 
@@ -462,7 +461,7 @@
                         <div class="text-[9.5px] font-extrabold uppercase tracking-widest text-[#E84520] mb-1">01 // RUČNÁ REALIZÁCIA PLAGÁTU</div>
                         <h3 class="font-display font-extrabold text-lg mb-1">Počítač len na navrhovanie</h3>
                         <p class="text-[#420C09]/90">
-                            Finálny filmový plagát (formát <strong>B2: 500 × 707 mm</strong>) vzniká <strong>výhradne ručne</strong> na papieri (koláž, linoryt, akryl, tuš, šablóna, ručný lettering). Počítač smieš použiť len v prípravnej fáze na rešerš, kompozičné skice a rozvrhnutie <em>Billing Blocku</em> pred ručným prenosom.
+                            Finálny filmový plagát (formát <strong>B2: 500 × 700 mm</strong>) vzniká <strong>výhradne ručne</strong> na pevnej podložke (koláž, linoryt, maľba, sieťotlač, asambláž, slepotlač, rezanie/perforácia, ručný lettering). Počítač smieš použiť len v prípravnej fáze na rešerš, kompozičné skice, mriežku a šablóny 1:1.
                         </p>
                     </div>
                     <div>
@@ -547,23 +546,126 @@
 
                     <div id="sheet01-scroll-content" class="no-native-scrollbar no-drag flex-1 overflow-y-auto pr-2 space-y-6 font-sans font-normal">
 
+                        <!-- 01 -->
                         <div class="grid grid-cols-[58px_1fr] gap-x-[14px] items-start">
                             <div class="w-[32px] h-[32px] is-round border-[1.5px] border-[#F38321] flex items-center justify-center font-display font-medium text-[13px] text-[#F38321] leading-none shrink-0">
                                 01
                             </div>
                             <div>
                                 <div class="text-[18px] tracking-[0.02em] text-[#F38321] uppercase leading-[32px] mb-1 font-normal">
-                                    KONCEPT &amp; OBMEDZENIE MÉDIA
+                                    FILM MIMO PLÁTNA: HMATATEĽNÝ PLAGÁT
                                 </div>
-                                <p class="text-[11.5px] font-normal text-white/95 leading-[1.5] max-w-[412px]">
-                                    Autorský filmový plagát postavený na vizuálnej skratke, napätí a údernej metafore (žiadne prvoplánové fotomontáže vznášajúcich sa hláv hercov ani kopírovanie oficiálnych distribučných vizuálov). Finálny formát B2 (500 × 707 mm) vzniká výhradne ručne v ateliéri — povolená je rezaná papierová koláž, linoryt, monotypia, akryl, čierny tuš, striekaná šablóna či autorský ručný lettering. Počítač slúži výlučne v prípravnej fáze na rešerš filmu, kompozičné varianty, farebnú rozvahu a presné vysádzanie filmového Billing Blocku pred jeho finálnym ručným prenosom na hárok. Každý zásah na papieri musí priznať autentickú stopu nástroja, kontrast mierok a prácu s negatívnym priestorom.
+                                <p class="text-[11.5px] font-normal text-white/95 leading-[1.5] max-w-[412px] italic">
+                                    Autorská vizuálna interpretácia filmového diela cez fyzickú hmotu, priestorový zásah a ručne realizovanú typografiu bez digitálneho postprocesu.
                                 </p>
                             </div>
                         </div>
 
+                        <!-- 02 -->
                         <div class="grid grid-cols-[58px_1fr] gap-x-[14px] items-start">
                             <div class="w-[32px] h-[32px] is-round border-[1.5px] border-[#F38321] flex items-center justify-center font-display font-medium text-[13px] text-[#F38321] leading-none shrink-0">
                                 02
+                            </div>
+                            <div>
+                                <div class="text-[18px] tracking-[0.02em] text-[#F38321] uppercase leading-[32px] mb-1 font-normal">
+                                    TÉMA A KONTEXT (PREČO TO ROBÍME)
+                                </div>
+                                <p class="text-[11.5px] font-normal text-white/95 leading-[1.5] max-w-[412px]">
+                                    Súčasný filmový marketing je zaplavený generickými „floating heads“ plagátmi, ktoré vznikajú v postprodukcii podľa rovnakých komerčných šablón. Tento projekt vracia filmový plagát ku koreňom – k poctivému remeslu a autorskej skratke (inšpirácia poľskou plagátovou školou či avantgardnými fotomontážami), no v kontexte súčasnej vizuálnej kultúry. Počítač v tomto procese slúži výhradne ako analytický a prípravný nástroj (skicár, typografická šablóna, simulácia gridu), zatiaľ čo finálne dielo musí obhájiť svoju existenciu vo fyzickom svete prostredníctvom reálnej textúry, vrstvenia, materiálu a priestorovej hĺbky.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- 03 -->
+                        <div class="grid grid-cols-[58px_1fr] gap-x-[14px] items-start">
+                            <div class="w-[32px] h-[32px] is-round border-[1.5px] border-[#F38321] flex items-center justify-center font-display font-medium text-[13px] text-[#F38321] leading-none shrink-0">
+                                03
+                            </div>
+                            <div>
+                                <div class="text-[18px] tracking-[0.02em] text-[#F38321] uppercase leading-[32px] mb-1 font-normal">
+                                    PEDAGOGICKÉ CIELE A ROZVÍJANÉ ZRUČNOSTI
+                                </div>
+                                <div class="space-y-2 text-[11.5px] font-normal text-white/95 leading-[1.48] max-w-[412px]">
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Vizuálna redukcia a metafora:</strong> Schopnosť abstrahovať dej, atmosféru alebo kľúčovú myšlienku filmu do jedného silného vizuálneho znaku bez doslovného prerozprávania deja.</p>
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Analógovo-digitálny workflow:</strong> Efektívne využitie digitálnych nástrojov (Adobe Illustrator/InDesign) na prípravu presného typografického rozvrhu, mriežky a šablón, ktoré sa následne manuálne prenášajú na finálny formát.</p>
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Haptika a priestorová kompozícia:</strong> Práca s reálnym materiálom, reliéfom, perforáciou alebo vrstvením ako nositeľom významu, nielen ako samoúčelnou dekoráciou.</p>
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Typografická disciplína v ručnej realizácii:</strong> Udržanie vizuálnej hierarchie a čitateľnosti titulku a sprievodných textov (billing block) pri manuálnom prenose (šablóna, tlač z výšky, koláž, precízny lettering).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 04 -->
+                        <div class="grid grid-cols-[58px_1fr] gap-x-[14px] items-start">
+                            <div class="w-[32px] h-[32px] is-round border-[1.5px] border-[#F38321] flex items-center justify-center font-display font-medium text-[13px] text-[#F38321] leading-none shrink-0">
+                                04
+                            </div>
+                            <div>
+                                <div class="text-[18px] tracking-[0.02em] text-[#F38321] uppercase leading-[32px] mb-1 font-normal">
+                                    ŠPECIFIKÁCIA ZADANIA (OUTPUTS &amp; WORKFLOW)
+                                </div>
+                                <div class="space-y-2 text-[11.5px] font-normal text-white/95 leading-[1.48] max-w-[412px]">
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Formát a médium:</strong> Plagát B2 (500 × 700 mm) na pevnú podložku (kapa doska, hrubý kartón alebo papier vysokej gramáže min. 300 g/m² kvôli stabilite pri priestorových zásahoch).</p>
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Výber témy:</strong> Študent si volí ľubovoľný hraný, dokumentárny alebo animovaný film. Výber podlieha schváleniu pedagógom (podmienkou je dostatočný konceptuálny potenciál filmu).</p>
+                                    <div>
+                                        <div class="text-[#C6D8FF] font-semibold mb-0.5">Povinný proces:</div>
+                                        <ul class="space-y-0.5 pl-3">
+                                            <li>• Analýza filmu a rešerš (bez pozerania existujúcich plagátov).</li>
+                                            <li>• Séria min. 15 rýchlych ručných skíc (hľadanie metafory a kompozície).</li>
+                                            <li>• Digitálna príprava (stanovenie mriežky, typografická sadzba, príprava tlačových/rezacích šablón v 1:1).</li>
+                                            <li>• Čisto manuálna realizácia finálneho formátu (25 vyučovacích hodín).</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="text-[#C6D8FF] font-semibold mb-0.5">Použité technológie a nástroje:</div>
+                                        <ul class="space-y-0.5 pl-3">
+                                            <li>• <em>Prípravná fáza:</em> Adobe InDesign / Illustrator, čiernobiela tlač šablón.</li>
+                                            <li>• <em>Realizačná fáza:</em> Maľba, linoryt/drevorez, sieťotlač, analógová koláž, asambláž, slepotlač, rezanie/perforácia papiera, práca s textilom, kovom či iným nájdeným materiálom.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 05 -->
+                        <div class="grid grid-cols-[58px_1fr] gap-x-[14px] items-start">
+                            <div class="w-[32px] h-[32px] is-round border-[1.5px] border-[#F38321] flex items-center justify-center font-display font-medium text-[13px] text-[#F38321] leading-none shrink-0">
+                                05
+                            </div>
+                            <div>
+                                <div class="text-[18px] tracking-[0.02em] text-[#F38321] uppercase leading-[32px] mb-1 font-normal">
+                                    OBMEDZENIA A VÝZVY (CONSTRAINTS)
+                                </div>
+                                <div class="space-y-2 text-[11.5px] font-normal text-white/95 leading-[1.48] max-w-[412px]">
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Pravidlo 1 (Zákaz klišé a redizajnu):</strong> Je prísne zakázané preberať vizuálne motívy z oficiálnych plagátov k danému filmu, prekresľovať známe filmové scény alebo stavať kompozíciu na portrétoch hlavných hercov. Hľadáme esenciu filmu, nie jeho ilustráciu.</p>
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Pravidlo 2 (Digitálna stopka):</strong> Finálny plagát nesmie obsahovať žiadnu digitálne vytlačenú grafiku ani fotku (výnimkou sú len fyzické výstrižky z reálnych novín/časopisov v rámci analógovej koláže). Digitálny výstup smie slúžiť len ako pomocná šablóna na prenos písma alebo tvarov.</p>
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Pravidlo 3 (Funkčná typografia):</strong> Plagát musí obsahovať názov filmu, meno režiséra a min. 3 ďalšie reálne údaje (rok, ocenenie, festival alebo fiktívny/reálny festivalový block). Typografia nesmie byť na plagát „prilepená navyše“ – musí byť organickou súčasťou zvolenej výtvarnej techniky a gridu.</p>
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Pravidlo 4 (Priestorový presah – voliteľný bonus / výzva):</strong> Ak sa študent rozhodne pre priestorovú intervenciu (reliéf, vyrezávané vrstvy, vystupujúce objekty do max. hĺbky 50 mm od plochy), tento zásah musí priamo súvisieť s dramaturgiou filmu (napr. vrstvenie ako symbol manipulácie, tieň ako prvok noir atmosféry).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 06 -->
+                        <div class="grid grid-cols-[58px_1fr] gap-x-[14px] items-start">
+                            <div class="w-[32px] h-[32px] is-round border-[1.5px] border-[#F38321] flex items-center justify-center font-display font-medium text-[13px] text-[#F38321] leading-none shrink-0">
+                                06
+                            </div>
+                            <div>
+                                <div class="text-[18px] tracking-[0.02em] text-[#F38321] uppercase leading-[32px] mb-1 font-normal">
+                                    HODNOTIACE KRITÉRIÁ
+                                </div>
+                                <div class="space-y-2 text-[11.5px] font-normal text-white/95 leading-[1.48] max-w-[412px] tabular-nums">
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Koncept a originalita metafory (35 %):</strong> Schopnosť odosobniť sa od oficiálneho vizuálu filmu a nájsť vlastný, inteligentný vizuálny kľúč k téme.</p>
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Typografia a vizuálna hierarchia (25 %):</strong> Čitateľnosť z diaľky aj zblízka, práca s mriežkou a kvalita manuálneho spracovania písma.</p>
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Remeselná úroveň a materiálová citlivosť (25 %):</strong> Čistota vyhotovenia (aj v prípade zámernej štruktúry/chyby), technické zvládnutie zvolenej grafickej/maliarskej techniky a pevnosť priestorových zásahov.</p>
+                                    <p><strong class="text-[#C6D8FF] font-semibold">Obhajoba (15 %):</strong> Schopnosť vecne a odborne zdôvodniť výber filmu, zvolenú kompozíciu, farebnosť a materiálové riešenie.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 07 -->
+                        <div class="grid grid-cols-[58px_1fr] gap-x-[14px] items-start">
+                            <div class="w-[32px] h-[32px] is-round border-[1.5px] border-[#F38321] flex items-center justify-center font-display font-medium text-[13px] text-[#F38321] leading-none shrink-0">
+                                07
                             </div>
                             <div>
                                 <div class="flex items-baseline gap-3 leading-[32px] mb-1">
@@ -600,19 +702,6 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-[58px_1fr] gap-x-[14px] items-start">
-                            <div class="w-[32px] h-[32px] is-round border-[1.5px] border-[#F38321] flex items-center justify-center font-display font-medium text-[13px] text-[#F38321] leading-none shrink-0">
-                                03
-                            </div>
-                            <div>
-                                <div class="text-[18px] tracking-[0.02em] text-[#F38321] uppercase leading-[32px] mb-0.5 font-normal">
-                                    VÝSTUPY
-                                </div>
-                                <p class="text-[11.5px] font-normal text-white/95">
-                                    Originál B2 (500×700) · Ručný titulok &amp; Billing Block · Analógový skicár
-                                </p>
-                            </div>
-                        </div>
                     </div>
 
                     <div id="sheet01-slider-track"
@@ -634,7 +723,7 @@
                     <div class="w-full flex justify-end">
                         <div class="relative w-[114px] h-[114px] flex items-center justify-center select-none -mt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 134.1 134.1" class="w-full h-full overflow-visible">
-                                <path d="m132.95 78.83-17.91-24.1c-.08-.82-.33-1.59-.72-2.27l11.36-14.34c2.77-3.5.72-8.69-3.7-9.34l-29.7-4.37c-.64-.52-1.36-.89-2.11-1.1L88.06 5.14c-.51-4.44-5.64-6.65-9.22-3.99l-24.1 17.91c-.82.08-1.59.33-2.27.72L38.13 8.42c-3.5-2.77-8.69-.72-9.34 3.7l-4.37 29.7c-.52.64-.89 1.36-1.1 2.11L5.15 46.04c-4.44.51-6.65 5.64-3.99 9.22l17.91 24.1c.08.82.33 1.59.72 2.27L8.43 95.97c-2.77 3.5-.72 8.69 3.7 9.34l29.7 4.37c.64.52-1.36.89 2.12 1.1l2.11 18.17c.52 4.44 5.64 6.65 9.22 3.99l24.1-17.91c.82-.08 1.59-.33 2.27-.72l14.34 11.36c3.5 2.77 8.69.72 9.34-3.7l4.37-29.7c.52-.64.89-1.36 1.1-2.11l18.17-2.11c4.44-.51 6.65-5.64 3.99-9.22Z" fill="#ffffff"/>
+                                <path d="m132.95 78.83-17.91-24.1c-.08-.82-.33-1.59-.72-2.27l11.36-14.34c2.77-3.5.72-8.69-3.7-9.34l-29.7-4.37c-.64-.52-1.36-.89-2.11-1.1L88.06 5.14c-.51-4.44-5.64-6.65-9.22-3.99l-24.1 17.91c-.82.08-1.59.33-2.27.72L38.13 8.42c-3.5-2.77-8.69-.72-9.34 3.7l-4.37 29.7c-.52.64-.89 1.36-1.1 2.11L5.15 46.04c-4.44.51-6.65 5.64-3.99 9.22l17.91 24.1c.08.82.33-1.59.72 2.27L8.43 95.97c-2.77 3.5-.72 8.69 3.7 9.34l29.7 4.37c.64.52-1.36.89 2.12 1.1l2.11 18.17c.52 4.44 5.64 6.65 9.22 3.99l24.1-17.91c.82-.08 1.59-.33 2.27-.72l14.34 11.36c3.5 2.77 8.69.72 9.34-3.7l4.37-29.7c.52-.64.89-1.36 1.1-2.11l18.17-2.11c4.44-.51 6.65-5.64 3.99-9.22Z" fill="#ffffff"/>
                             </svg>
                             <div class="absolute inset-0 flex flex-col items-center justify-center pt-1 tabular-nums">
                                 <div class="font-display font-extrabold text-[31px] text-[#F38321] leading-[0.82] tracking-tight">500</div>
@@ -1038,6 +1127,12 @@
             const selectEl = document.getElementById('active-student-select');
             const lockedLabel = document.getElementById('locked-student-label');
 
+            const adminBrand = document.getElementById('header-admin-brand');
+            const adminSep1 = document.getElementById('header-admin-sep-1');
+            const adminIdentity = document.getElementById('header-admin-identity');
+            const adminSep2 = document.getElementById('header-admin-sep-2');
+            const resetBtn = document.getElementById('header-reset-btn');
+
             if (isAdmin) {
                 if (sheet04) sheet04.classList.remove('hidden');
                 if (navBtn04) navBtn04.classList.remove('hidden');
@@ -1047,12 +1142,24 @@
                 }
                 if (selectEl) selectEl.classList.remove('hidden');
                 if (lockedLabel) lockedLabel.classList.add('hidden');
+
+                if (adminBrand) { adminBrand.classList.remove('hidden'); adminBrand.classList.add('flex'); }
+                if (adminSep1) adminSep1.classList.remove('hidden');
+                if (adminIdentity) { adminIdentity.classList.remove('hidden'); adminIdentity.classList.add('flex'); }
+                if (adminSep2) adminSep2.classList.remove('hidden');
+                if (resetBtn) resetBtn.classList.remove('hidden');
             } else {
                 if (sheet04) sheet04.classList.add('hidden');
                 if (navBtn04) navBtn04.classList.add('hidden');
                 if (toggleAdminBtn) toggleAdminBtn.classList.add('hidden');
                 if (selectEl) selectEl.classList.add('hidden');
-                if (lockedLabel) lockedLabel.classList.remove('hidden');
+                if (lockedLabel) lockedLabel.classList.add('hidden');
+
+                if (adminBrand) { adminBrand.classList.add('hidden'); adminBrand.classList.remove('flex'); }
+                if (adminSep1) adminSep1.classList.add('hidden');
+                if (adminIdentity) { adminIdentity.classList.add('hidden'); adminIdentity.classList.remove('flex'); }
+                if (adminSep2) adminSep2.classList.add('hidden');
+                if (resetBtn) resetBtn.classList.add('hidden');
             }
 
             renderAll();

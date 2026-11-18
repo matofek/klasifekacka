@@ -1111,7 +1111,7 @@
             if (isFirebaseReady) subscribeToCloudState();
         }
 
-        function unlockWorkspaceForRole(role, studentId) {
+function unlockWorkspaceForRole(role, studentId) {
             document.body.classList.remove('is-locked');
             const gate = document.getElementById('auth-gate-modal');
             if (gate) gate.classList.add('hidden');
@@ -1133,6 +1133,10 @@
             const adminSep2 = document.getElementById('header-admin-sep-2');
             const resetBtn = document.getElementById('header-reset-btn');
 
+            // Blok identity a oddeľovač sú viditeľné pre všetkých (žiačka tam vidí svoj pseudonym)
+            if (adminIdentity) { adminIdentity.classList.remove('hidden'); adminIdentity.classList.add('flex'); }
+            if (adminSep2) adminSep2.classList.remove('hidden');
+
             if (isAdmin) {
                 if (sheet04) sheet04.classList.remove('hidden');
                 if (navBtn04) navBtn04.classList.remove('hidden');
@@ -1145,20 +1149,16 @@
 
                 if (adminBrand) { adminBrand.classList.remove('hidden'); adminBrand.classList.add('flex'); }
                 if (adminSep1) adminSep1.classList.remove('hidden');
-                if (adminIdentity) { adminIdentity.classList.remove('hidden'); adminIdentity.classList.add('flex'); }
-                if (adminSep2) adminSep2.classList.remove('hidden');
                 if (resetBtn) resetBtn.classList.remove('hidden');
             } else {
                 if (sheet04) sheet04.classList.add('hidden');
                 if (navBtn04) navBtn04.classList.add('hidden');
                 if (toggleAdminBtn) toggleAdminBtn.classList.add('hidden');
                 if (selectEl) selectEl.classList.add('hidden');
-                if (lockedLabel) lockedLabel.classList.add('hidden');
+                if (lockedLabel) lockedLabel.classList.remove('hidden');
 
                 if (adminBrand) { adminBrand.classList.add('hidden'); adminBrand.classList.remove('flex'); }
                 if (adminSep1) adminSep1.classList.add('hidden');
-                if (adminIdentity) { adminIdentity.classList.add('hidden'); adminIdentity.classList.remove('flex'); }
-                if (adminSep2) adminSep2.classList.add('hidden');
                 if (resetBtn) resetBtn.classList.add('hidden');
             }
 
@@ -1206,19 +1206,26 @@
                     return;
                 }
                 const data = doc.data();
+                let needsResync = false;
                 if (Array.isArray(data.students) && data.students.length) {
                     data.students.forEach(remoteSt => {
                         const localSt = students.find(s => s.id === remoteSt.id);
-                        if (localSt) Object.assign(localSt, remoteSt);
+                        if (localSt) {
+                            Object.assign(localSt, remoteSt);
+                            if (localSt.id === 'std_02' && localSt.alias === 'Lana LayOut') {
+                                localSt.alias = 'Karamelový Vrstevník';
+                                needsResync = true;
+                            }
+                        }
                     });
                 }
                 if (typeof data.fogOfWarActive === 'boolean') {
                     fogOfWarActive = data.fogOfWarActive;
                 }
+                if (needsResync) syncStateToCloud();
                 renderAll();
             }, err => console.warn('Firestore snapshot warning:', err));
         }
-
         // =========================================================================
         // 1. AUTOMATICKÉ ODRÁTAVANIE HODÍN PODĽA PLÁNU ZVONENIA (STREDA 2.–6. HOD)
         // =========================================================================
@@ -2067,18 +2074,25 @@
                             </div>
                         </div>
                     `;
-                } else {
+               } else {
+                    const classmatesOptions = students
+                        .filter(s => s.id !== activeSender.id)
+                        .map(s => `<option value="${s.id}" class="text-[#420C09]" ${s.id === st.id ? 'selected' : ''}>${s.name}</option>`)
+                        .join('');
+
                     html += `
                         <div class="no-drag absolute select-none"
                              style="left:${boxLeft}px; top:${boxTop}px; width:${boxW}px; height:${boxH}px; background-color:#eb4221; padding:${bleedTop}px ${bleedRight}px ${bleedBottom}px ${bleedLeft}px;">
-                            <div class="relative w-full h-full px-[18px] py-[14px] flex flex-col justify-between text-white">
+                            <div class="relative w-full h-full px-[18px] py-[12px] flex flex-col justify-between text-white">
 
-                                <div class="text-[10px] font-semibold tracking-wide">
-                                    <span class="text-[#420C09] uppercase font-bold">ŽOLÍK PRE //</span>
-                                    <span class="text-white ml-1">${st.alias}</span>
+                                <div class="flex items-center gap-1.5 text-[9.5px] font-semibold tracking-wide pr-6">
+                                    <span class="text-[#420C09] uppercase font-bold shrink-0">ŽOLÍK PRE //</span>
+                                    <select id="joker-target-${st.id}" class="bg-[#420C09] text-white text-[9.5px] font-bold px-1.5 py-0.5 border border-white/40 focus:outline-none truncate">
+                                        ${classmatesOptions}
+                                    </select>
                                 </div>
 
-                                <div class="pr-8 space-y-1.5">
+                                <div class="pr-8 space-y-1">
                                     <select id="joker-cat-${st.id}" class="w-full bg-[#420C09]/25 text-white text-[9.5px] font-medium px-2 py-1 border border-white/30 focus:outline-none">
                                         <option value="metafora" class="text-[#420C09]">Za údernú vizuálnu metaforu</option>
                                         <option value="remeslo" class="text-[#420C09]">Za ručnú textúru / linoryt / koláž</option>
@@ -2128,9 +2142,11 @@
             renderBusinessCardLeaderboard();
         }
 
-        function submitPeerJoker(targetId) {
+        function submitPeerJoker(cardStudentId) {
             const sender = students.find(s => s.id === activeStudentId);
-            const target = students.find(s => s.id === targetId);
+            const targetSelect = document.getElementById(`joker-target-${cardStudentId}`);
+            const chosenTargetId = targetSelect ? targetSelect.value : cardStudentId;
+            const target = students.find(s => s.id === chosenTargetId);
             if (!sender || !target) return;
 
             if (sender.id === target.id) {
@@ -2142,7 +2158,7 @@
                 return;
             }
 
-            const argEl = document.getElementById(`joker-arg-${targetId}`);
+            const argEl = document.getElementById(`joker-arg-${cardStudentId}`);
             const text = argEl ? argEl.value.trim() : '';
             if (text.length < 15) {
                 showToast('Napíš konkrétny dizajnérsky argument (aspoň 15 znakov, nie iba „páči sa mi“).');
@@ -2156,9 +2172,8 @@
 
             syncStateToCloud();
             renderAll();
-            showToast(`Žolík odoslaný pre ${target.alias} (+15 ŠPK)! Získavaš +5 ŠPK za odbornú kritiku.`);
+            showToast(`Žolík odoslaný pre ${target.name} (+15 ŠPK)! Získavaš +5 ŠPK za odbornú kritiku.`);
         }
-
         // =========================================================================
         // 8. ARCH 03 — #3 PROGRES (ORIGINÁLNY GRAF PERA & PREPRESS ODZNAKY)
         // =========================================================================
@@ -2394,7 +2409,9 @@
                         <div class="min-w-[195px]">
                             <div class="font-display font-bold text-white text-sm leading-tight">
                                 ${st.name}
-                                <span class="text-[#F38321] font-normal text-xs ml-1">// ${st.alias}</span>
+                                <button type="button" onclick="adminChangeAlias('${st.id}')" title="Klikni pre zmenu pseudonymu" class="text-[#F38321] hover:text-white font-normal text-xs ml-1 underline decoration-dotted cursor-pointer">
+                                    // ${st.alias} ✎
+                                </button>
                             </div>
                             <div class="text-[10px] text-[#C6D8FF]/65">${st.email}</div>
                         </div>
@@ -2424,6 +2441,18 @@
             });
 
             list.innerHTML = html;
+        }
+
+        function adminChangeAlias(studentId) {
+            const st = students.find(s => s.id === studentId);
+            if (!st) return;
+            const nextAlias = prompt(`Zmeniť pseudonym pre ${st.name}:`, st.alias);
+            if (nextAlias && nextAlias.trim()) {
+                st.alias = nextAlias.trim();
+                syncStateToCloud();
+                renderAll();
+                showToast(`Pseudonym pre ${st.name} zmenený na „${st.alias}“.`);
+            }
         }
 
         function adminAddPoints(studentId, delta) {
